@@ -164,6 +164,33 @@ MCP servers start automatically when the plugin is enabled.
 claude /plugin install compounding-engineering
 ```
 
+## Known Issues
+
+### MCP Servers Not Auto-Loading
+
+**Issue:** The bundled MCP servers (Playwright and Context7) may not load automatically when the plugin is installed.
+
+**Workaround:** Manually add them to your project's `.claude/settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"],
+      "env": {}
+    },
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
+    }
+  }
+}
+```
+
+Or add them globally in `~/.claude/settings.json` for all projects.
+
 ## Version History
 
 See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
