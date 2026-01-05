@@ -1,8 +1,8 @@
 {
-  "name": "every-marketplace",
+  "name": "raku-marketplace",
   "owner": {
-    "name": "Every Inc.",
-    "url": "https://github.com/EveryInc"
+    "name": "rakutek",
+    "url": "https://github.com/rakutek"
   },
   "metadata": {
     "description": "Official Every plugin marketplace for Claude Code extensions",
