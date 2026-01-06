@@ -5,6 +5,24 @@ All notable changes to the compound-engineering plugin will be documented in thi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.22.0] - 2026-01-07
+
+### Removed
+
+- **`dhh-rails-style` skill** - Consolidated into `dhh-ruby-style`. The two skills had identical descriptions and overlapping content. All references from `dhh-rails-style` (controllers.md, models.md, frontend.md, architecture.md, gems.md) have been merged into `dhh-ruby-style`.
+- **`every-style-editor` agent** - Removed duplicate agent. The `every-style-editor` skill provides the same functionality with better reference documentation.
+
+### Changed
+
+- **`dhh-ruby-style` skill** - Now includes comprehensive references from the removed `dhh-rails-style`:
+  - controllers.md - REST mapping, concerns, Turbo responses, API patterns
+  - models.md - Concerns, state records, callbacks, scopes, POROs
+  - frontend.md - Turbo, Stimulus, CSS architecture, view patterns
+  - architecture.md - Routing, auth, jobs, caching, multi-tenancy, config
+  - gems.md - What they use vs avoid, and why
+
+---
+
 ## [2.21.0] - 2026-01-05
 
 ### Removed

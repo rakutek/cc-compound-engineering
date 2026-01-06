@@ -185,6 +185,11 @@ end
 ## Detailed References
 
 For comprehensive patterns and examples, see:
+- [controllers.md](./references/controllers.md) - REST mapping, concerns, Turbo responses, API patterns
+- [models.md](./references/models.md) - Concerns, state records, callbacks, scopes, POROs
+- [frontend.md](./references/frontend.md) - Turbo, Stimulus, CSS architecture, view patterns
+- [architecture.md](./references/architecture.md) - Routing, auth, jobs, caching, multi-tenancy, config
+- [gems.md](./references/gems.md) - What they use vs avoid, and why
 - [patterns.md](./references/patterns.md) - Complete code patterns with explanations
 - [resources.md](./references/resources.md) - Links to source material and further reading
 
