@@ -5,6 +5,19 @@ All notable changes to the compound-engineering plugin will be documented in thi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.27.0] - 2026-01-14
+
+### Removed
+
+- **`gemini-imagegen` skill** - Removed image generation skill. External API dependency and specialized use case not essential for core development workflows.
+
+### Changed
+
+- Updated skill count from 10 to 9 in all documentation
+- Removed "Image Generation" section from README
+
+---
+
 ## [2.26.0] - 2026-01-14
 
 ### Removed

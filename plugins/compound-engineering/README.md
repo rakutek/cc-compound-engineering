@@ -114,27 +114,11 @@ Core workflow commands use `workflows:` prefix to avoid collisions with built-in
 | `file-todos` | File-based todo tracking system |
 | `git-worktree` | Manage Git worktrees for parallel development |
 
-### Image Generation
-
-| Skill | Description |
-|-------|-------------|
-| `gemini-imagegen` | Generate and edit images using Google's Gemini API |
-
 ### Browser Automation
 
 | Skill | Description |
 |-------|-------------|
 | `agent-browser` | Automate browser interactions for web testing, form filling, screenshots, and data extraction |
-
-**gemini-imagegen features:**
-- Text-to-image generation
-- Image editing and manipulation
-- Multi-turn refinement
-- Multiple reference image composition (up to 14 images)
-
-**Requirements:**
-- `GEMINI_API_KEY` environment variable
-- Python packages: `google-genai`, `pillow`
 
 ## MCP Servers
 
