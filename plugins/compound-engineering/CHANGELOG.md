@@ -5,6 +5,20 @@ All notable changes to the compound-engineering plugin will be documented in thi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.28.0] - 2026-01-14
+
+### Removed
+
+- **`design-implementation-reviewer` agent** - Removed duplicate functionality. `figma-design-sync` agent provides more comprehensive design synchronization with automated fixing.
+- **`julik-frontend-races-reviewer` agent** - Removed individual-specific agent focusing on narrow use case (frontend race conditions). General code quality reviews cover this adequately.
+
+### Changed
+
+- Updated agent count from 25 to 23 in all documentation
+- Updated Design agents section from 3 to 2 agents
+
+---
+
 ## [2.27.0] - 2026-01-14
 
 ### Removed

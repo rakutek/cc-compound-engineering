@@ -32,7 +32,6 @@ Agents are organized into categories for easier discovery.
 | `pattern-recognition-specialist` | Analyze code for patterns and anti-patterns |
 | `performance-oracle` | Performance analysis and optimization |
 | `security-sentinel` | Security audits and vulnerability assessments |
-| `julik-frontend-races-reviewer` | Review JavaScript/Stimulus code for race conditions |
 
 ### Research (4)
 
@@ -43,11 +42,10 @@ Agents are organized into categories for easier discovery.
 | `git-history-analyzer` | Analyze git history and code evolution |
 | `repo-research-analyst` | Research repository structure and conventions |
 
-### Design (3)
+### Design (2)
 
 | Agent | Description |
 |-------|-------------|
-| `design-implementation-reviewer` | Verify UI implementations match Figma designs |
 | `design-iterator` | Iteratively refine UI through systematic design iterations |
 | `figma-design-sync` | Synchronize web implementations with Figma designs |
 
