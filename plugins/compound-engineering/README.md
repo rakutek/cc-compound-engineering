@@ -107,13 +107,11 @@ Core workflow commands use `workflows:` prefix to avoid collisions with built-in
 | `dhh-ruby-style` | Write Ruby/Rails code in DHH's 37signals style |
 | `frontend-design` | Create production-grade frontend interfaces |
 | `kieran-code-quality` | Language-agnostic code quality principles for all Kieran reviewers |
-| `skill-creator` | Guide for creating effective Claude Code skills |
 
-### Content & Workflow
+### Workflow Tools
 
 | Skill | Description |
 |-------|-------------|
-| `every-style-editor` | Review copy for Every's style guide compliance |
 | `file-todos` | File-based todo tracking system |
 | `git-worktree` | Manage Git worktrees for parallel development |
 

@@ -5,6 +5,20 @@ All notable changes to the compound-engineering plugin will be documented in thi
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.25.0] - 2026-01-14
+
+### Removed
+
+- **`skill-creator` skill** - Removed duplicate skill. Functionality fully covered by `create-agent-skills` which is more comprehensive and follows Claude Code official specifications.
+- **`every-style-editor` skill** - Removed organization-specific skill with limited general applicability.
+
+### Changed
+
+- Updated skill count from 13 to 11 in all documentation
+- Renamed "Content & Workflow" section to "Workflow Tools" in README
+
+---
+
 ## [2.24.0] - 2026-01-13
 
 ### Added
