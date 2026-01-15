@@ -1,33 +1,33 @@
 ---
 name: {{SKILL_NAME}}
-description: {{What it does}} Use when {{trigger conditions}}.
+description: {{何をするか}} {{トリガー条件}}の場合に使用します。
 ---
 
 <objective>
-{{Clear statement of what this skill accomplishes}}
+{{このスキルが達成することの明確な記述}}
 </objective>
 
 <quick_start>
-{{Immediate actionable guidance - what Claude should do first}}
+{{すぐに実行可能なガイダンス - Claudeが最初に何をすべきか}}
 </quick_start>
 
 <process>
-## Step 1: {{First action}}
+## ステップ1：{{最初のアクション}}
 
-{{Instructions for step 1}}
+{{ステップ1の手順}}
 
-## Step 2: {{Second action}}
+## ステップ2：{{2番目のアクション}}
 
-{{Instructions for step 2}}
+{{ステップ2の手順}}
 
-## Step 3: {{Third action}}
+## ステップ3：{{3番目のアクション}}
 
-{{Instructions for step 3}}
+{{ステップ3の手順}}
 </process>
 
 <success_criteria>
-{{Skill name}} is complete when:
-- [ ] {{First success criterion}}
-- [ ] {{Second success criterion}}
-- [ ] {{Third success criterion}}
+{{スキル名}}は以下の場合に完了：
+- [ ] {{最初の成功基準}}
+- [ ] {{2番目の成功基準}}
+- [ ] {{3番目の成功基準}}
 </success_criteria>

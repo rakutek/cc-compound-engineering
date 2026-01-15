@@ -1,10 +1,10 @@
 <overview>
-Skills improve through iteration and testing. This reference covers evaluation-driven development, Claude A/B testing patterns, and XML structure validation during testing.
+スキルは反復とテストを通じて改善されます。このリファレンスは、評価駆動開発、Claude A/Bテストパターン、およびテスト中のXML構造検証をカバーします。
 </overview>
 
 <evaluation_driven_development>
 <principle>
-Create evaluations BEFORE writing extensive documentation. This ensures your skill solves real problems rather than documenting imagined ones.
+広範なドキュメントを書く前に評価を作成します。これにより、想像された問題ではなく、実際の問題を解決するスキルになります。
 </principle>
 
 <workflow>

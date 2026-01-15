@@ -1,74 +1,74 @@
-# Workflow: Add a Template to a Skill
+# Workflow: スキルにテンプレートを追加する
 
 <required_reading>
-**Read these reference files NOW:**
+**今すぐこれらのリファレンスファイルを読んでください:**
 1. references/using-templates.md
 </required_reading>
 
 <process>
-## Step 1: Identify the Skill
+## ステップ1: スキルを特定する
 
-Ask (if not already provided):
-- Which skill needs a template?
-- What output does this template structure?
+（まだ提供されていない場合）以下を尋ねます:
+- どのスキルにテンプレートが必要ですか？
+- このテンプレートはどのような出力を構造化しますか？
 
-## Step 2: Analyze Template Need
+## ステップ2: テンプレートの必要性を分析する
 
-Confirm this is a good template candidate:
-- [ ] Output has consistent structure across uses
-- [ ] Structure matters more than creative generation
-- [ ] Filling placeholders is more reliable than blank-page generation
+これが良いテンプレート候補であることを確認します:
+- [ ] 出力が使用間で一貫した構造を持つ
+- [ ] 創造的な生成よりも構造が重要である
+- [ ] プレースホルダーの埋め込みが白紙からの生成よりも信頼できる
 
-If not a good fit, suggest alternatives (workflow guidance, reference examples).
+適切でない場合は、代替案（ワークフローガイダンス、リファレンス例）を提案します。
 
-## Step 3: Create Templates Directory
+## ステップ3: templatesディレクトリを作成する
 
 ```bash
 mkdir -p ~/.claude/skills/{skill-name}/templates
 ```
 
-## Step 4: Design Template Structure
+## ステップ4: テンプレート構造を設計する
 
-Gather requirements:
-- What sections does the output need?
-- What information varies between uses? (→ placeholders)
-- What stays constant? (→ static structure)
+要件を収集します:
+- 出力にはどのようなセクションが必要ですか？
+- 使用間で変化する情報は何ですか？（→ プレースホルダー）
+- 一定のままなのは何ですか？（→ 静的構造）
 
-## Step 5: Write Template File
+## ステップ5: テンプレートファイルを書く
 
-Create `templates/{template-name}.md` with:
-- Clear section markers
-- `{{PLACEHOLDER}}` syntax for variable content
-- Brief inline guidance where helpful
-- Minimal example content
+以下を含む`templates/{template-name}.md`を作成します:
+- 明確なセクションマーカー
+- 可変コンテンツ用の`{{PLACEHOLDER}}`構文
+- 役立つ場合は簡潔なインラインガイダンス
+- 最小限の例示コンテンツ
 
-## Step 6: Update Workflow to Use Template
+## ステップ6: テンプレートを使用するようにワークフローを更新する
 
-Find the workflow that produces this output. Add:
+この出力を生成するワークフローを見つけます。以下を追加します:
 ```xml
 <process>
 ...
-N. Read `templates/{template-name}.md`
-N+1. Copy template structure
-N+2. Fill each placeholder based on gathered context
+N. `templates/{template-name}.md`を読む
+N+1. テンプレート構造をコピー
+N+2. 収集したコンテキストに基づいて各プレースホルダーを埋める
 ...
 </process>
 ```
 
-## Step 7: Test
+## ステップ7: テストする
 
-Invoke the skill workflow and verify:
-- Template is read at the right step
-- All placeholders get filled appropriately
-- Output structure matches template
-- No placeholders left unfilled
+スキルワークフローを呼び出して検証します:
+- テンプレートが適切なステップで読まれる
+- すべてのプレースホルダーが適切に埋められる
+- 出力構造がテンプレートと一致する
+- 埋められていないプレースホルダーがない
 </process>
 
 <success_criteria>
-Template is complete when:
-- [ ] templates/ directory exists
-- [ ] Template file has clear structure with placeholders
-- [ ] At least one workflow references the template
-- [ ] Workflow instructions explain when/how to use template
-- [ ] Tested with real invocation
+テンプレートは以下が完了したときに完了です:
+- [ ] templates/ ディレクトリが存在する
+- [ ] テンプレートファイルがプレースホルダーを持つ明確な構造を持っている
+- [ ] 少なくとも1つのワークフローがテンプレートを参照している
+- [ ] ワークフローの指示がテンプレートをいつ/どのように使用するかを説明している
+- [ ] 実際の呼び出しでテスト済み
 </success_criteria>

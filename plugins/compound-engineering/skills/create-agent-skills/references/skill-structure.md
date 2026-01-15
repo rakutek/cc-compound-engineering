@@ -1,10 +1,10 @@
 <overview>
-Skills have three structural components: YAML frontmatter (metadata), pure XML body structure (content organization), and progressive disclosure (file organization). This reference defines requirements and best practices for each component.
+スキルには3つの構造的コンポーネントがあります: YAMLフロントマター (メタデータ)、純粋XML本体構造 (コンテンツ組織)、および漸進的開示 (ファイル組織)。このリファレンスは、各コンポーネントの要件とベストプラクティスを定義します。
 </overview>
 
 <xml_structure_requirements>
 <critical_rule>
-**Remove ALL markdown headings (#, ##, ###) from skill body content.** Replace with semantic XML tags. Keep markdown formatting WITHIN content (bold, italic, lists, code blocks, links).
+**スキル本文コンテンツからすべてのMarkdown見出し (#, ##, ###) を削除してください。** 意味的なXMLタグに置き換えます。コンテンツ内のMarkdownフォーマット (太字、斜体、リスト、コードブロック、リンク) は保持します。
 </critical_rule>
 
 <required_tags>

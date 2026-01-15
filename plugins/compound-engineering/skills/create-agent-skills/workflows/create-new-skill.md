@@ -1,7 +1,7 @@
-# Workflow: Create a New Skill
+# ワークフロー：新しいスキルを作成
 
 <required_reading>
-**Read these reference files NOW:**
+**今すぐこれらのリファレンスファイルを読む：**
 1. references/recommended-structure.md
 2. references/skill-structure.md
 3. references/core-principles.md
@@ -9,183 +9,183 @@
 </required_reading>
 
 <process>
-## Step 1: Adaptive Requirements Gathering
+## ステップ1：適応的な要件収集
 
-**If user provided context** (e.g., "build a skill for X"):
-→ Analyze what's stated, what can be inferred, what's unclear
-→ Skip to asking about genuine gaps only
+**ユーザーがコンテキストを提供した場合**（例：「Xのためのスキルを構築」）：
+→ 述べられていること、推測できること、不明確なことを分析
+→ 本当のギャップについてのみ質問にスキップ
 
-**If user just invoked skill without context:**
-→ Ask what they want to build
+**ユーザーがコンテキストなしでスキルを呼び出した場合：**
+→ 何を構築したいか尋ねる
 
-### Using AskUserQuestion
+### AskUserQuestionの使用
 
-Ask 2-4 domain-specific questions based on actual gaps. Each question should:
-- Have specific options with descriptions
-- Focus on scope, complexity, outputs, boundaries
-- NOT ask things obvious from context
+実際のギャップに基づいて2〜4つのドメイン固有の質問をします。各質問は：
+- 説明付きの具体的なオプションを持つ
+- スコープ、複雑さ、出力、境界に焦点を当てる
+- コンテキストから明らかなことは尋ねない
 
-Example questions:
-- "What specific operations should this skill handle?" (with options based on domain)
-- "Should this also handle [related thing] or stay focused on [core thing]?"
-- "What should the user see when successful?"
+質問の例：
+- 「このスキルはどの具体的な操作を処理すべきですか？」（ドメインに基づいたオプション付き）
+- 「[関連事項]も処理すべきですか、それとも[コア事項]に集中すべきですか？」
+- 「成功時にユーザーは何を見るべきですか？」
 
-### Decision Gate
+### 決定ゲート
 
-After initial questions, ask:
-"Ready to proceed with building, or would you like me to ask more questions?"
+最初の質問の後、尋ねます：
+「構築を進める準備ができていますか、それとももっと質問してほしいですか？」
 
-Options:
-1. **Proceed to building** - I have enough context
-2. **Ask more questions** - There are more details to clarify
-3. **Let me add details** - I want to provide additional context
+オプション：
+1. **構築を進める** - 十分なコンテキストがある
+2. **もっと質問する** - 明確にすべき詳細がある
+3. **詳細を追加させて** - 追加のコンテキストを提供したい
 
-## Step 2: Research Trigger (If External API)
+## ステップ2：リサーチトリガー（外部APIの場合）
 
-**When external service detected**, ask using AskUserQuestion:
-"This involves [service name] API. Would you like me to research current endpoints and patterns before building?"
+**外部サービスが検出された場合**、AskUserQuestionを使用して尋ねます：
+「これは[サービス名] APIを含みます。構築前に現在のエンドポイントとパターンをリサーチしましょうか？」
 
-Options:
-1. **Yes, research first** - Fetch current documentation for accurate implementation
-2. **No, proceed with general patterns** - Use common patterns without specific API research
+オプション：
+1. **はい、最初にリサーチ** - 正確な実装のために現在のドキュメントを取得
+2. **いいえ、一般的なパターンで進める** - 特定のAPIリサーチなしで一般的なパターンを使用
 
-If research requested:
-- Use Context7 MCP to fetch current library documentation
-- Or use WebSearch for recent API documentation
-- Focus on 2024-2025 sources
-- Store findings for use in content generation
+リサーチが要求された場合：
+- Context7 MCPを使用して現在のライブラリドキュメントを取得
+- または最近のAPIドキュメント用にWebSearchを使用
+- 2024-2025年のソースに焦点を当てる
+- コンテンツ生成に使用するために発見を保存
 
-## Step 3: Decide Structure
+## ステップ3：構造を決定
 
-**Simple skill (single workflow, <200 lines):**
-→ Single SKILL.md file with all content
+**シンプルスキル（単一ワークフロー、<200行）：**
+→ すべてのコンテンツを含む単一のSKILL.mdファイル
 
-**Complex skill (multiple workflows OR domain knowledge):**
-→ Router pattern:
+**複雑なスキル（複数のワークフローまたはドメイン知識）：**
+→ ルーターパターン：
 ```
 skill-name/
-├── SKILL.md (router + principles)
-├── workflows/ (procedures - FOLLOW)
-├── references/ (knowledge - READ)
-├── templates/ (output structures - COPY + FILL)
-└── scripts/ (reusable code - EXECUTE)
+├── SKILL.md（ルーター + 原則）
+├── workflows/（手順 - 従う）
+├── references/（知識 - 読む）
+├── templates/（出力構造 - コピー + 入力）
+└── scripts/（再利用可能コード - 実行）
 ```
 
-Factors favoring router pattern:
-- Multiple distinct user intents (create vs debug vs ship)
-- Shared domain knowledge across workflows
-- Essential principles that must not be skipped
-- Skill likely to grow over time
+ルーターパターンを好む要因：
+- 複数の異なるユーザー意図（作成 vs デバッグ vs シップ）
+- ワークフロー間で共有されるドメイン知識
+- スキップしてはいけない重要な原則
+- 時間とともに成長する可能性があるスキル
 
-**Consider templates/ when:**
-- Skill produces consistent output structures (plans, specs, reports)
-- Structure matters more than creative generation
+**templates/を検討する場合：**
+- スキルが一貫した出力構造を生成（計画、仕様、レポート）
+- 構造が創造的な生成よりも重要
 
-**Consider scripts/ when:**
-- Same code runs across invocations (deploy, setup, API calls)
-- Operations are error-prone when rewritten each time
+**scripts/を検討する場合：**
+- 呼び出し間で同じコードが実行される（デプロイ、セットアップ、API呼び出し）
+- 毎回書き直すとエラーが起こりやすい操作
 
-See references/recommended-structure.md for templates.
+references/recommended-structure.mdを参照してテンプレートを確認。
 
-## Step 4: Create Directory
+## ステップ4：ディレクトリを作成
 
 ```bash
 mkdir -p ~/.claude/skills/{skill-name}
-# If complex:
+# 複雑な場合：
 mkdir -p ~/.claude/skills/{skill-name}/workflows
 mkdir -p ~/.claude/skills/{skill-name}/references
-# If needed:
-mkdir -p ~/.claude/skills/{skill-name}/templates  # for output structures
-mkdir -p ~/.claude/skills/{skill-name}/scripts    # for reusable code
+# 必要に応じて：
+mkdir -p ~/.claude/skills/{skill-name}/templates  # 出力構造用
+mkdir -p ~/.claude/skills/{skill-name}/scripts    # 再利用可能コード用
 ```
 
-## Step 5: Write SKILL.md
+## ステップ5：SKILL.mdを作成
 
-**Simple skill:** Write complete skill file with:
-- YAML frontmatter (name, description)
+**シンプルスキル：** 以下を含む完全なスキルファイルを作成：
+- YAMLフロントマター（name、description）
 - `<objective>`
 - `<quick_start>`
-- Content sections with pure XML
+- 純粋XMLのコンテンツセクション
 - `<success_criteria>`
 
-**Complex skill:** Write router with:
-- YAML frontmatter
-- `<essential_principles>` (inline, unavoidable)
-- `<intake>` (question to ask user)
-- `<routing>` (maps answers to workflows)
-- `<reference_index>` and `<workflows_index>`
+**複雑なスキル：** 以下を含むルーターを作成：
+- YAMLフロントマター
+- `<essential_principles>`（インライン、回避不可）
+- `<intake>`（ユーザーに尋ねる質問）
+- `<routing>`（回答をワークフローにマッピング）
+- `<reference_index>`と`<workflows_index>`
 
-## Step 6: Write Workflows (if complex)
+## ステップ6：ワークフローを作成（複雑な場合）
 
-For each workflow:
+各ワークフロー用：
 ```xml
 <required_reading>
-Which references to load for this workflow
+このワークフロー用に読み込むリファレンス
 </required_reading>
 
 <process>
-Step-by-step procedure
+ステップバイステップの手順
 </process>
 
 <success_criteria>
-How to know this workflow is done
+このワークフローが完了したことを知る方法
 </success_criteria>
 ```
 
-## Step 7: Write References (if needed)
+## ステップ7：リファレンスを作成（必要に応じて）
 
-Domain knowledge that:
-- Multiple workflows might need
-- Doesn't change based on workflow
-- Contains patterns, examples, technical details
+ドメイン知識：
+- 複数のワークフローが必要とする可能性がある
+- ワークフローに基づいて変化しない
+- パターン、例、技術的詳細を含む
 
-## Step 8: Validate Structure
+## ステップ8：構造を検証
 
-Check:
-- [ ] YAML frontmatter valid
-- [ ] Name matches directory (lowercase-with-hyphens)
-- [ ] Description says what it does AND when to use it (third person)
-- [ ] No markdown headings (#) in body - use XML tags
-- [ ] Required tags present: objective, quick_start, success_criteria
-- [ ] All referenced files exist
-- [ ] SKILL.md under 500 lines
-- [ ] XML tags properly closed
+チェック：
+- [ ] YAMLフロントマターが有効
+- [ ] nameがディレクトリと一致（lowercase-with-hyphens）
+- [ ] descriptionが何をするかといつ使用するかを述べている（三人称）
+- [ ] ボディ内にMarkdownの見出し（#）がない - XMLタグを使用
+- [ ] 必須タグが存在：objective、quick_start、success_criteria
+- [ ] 参照されているすべてのファイルが存在
+- [ ] SKILL.mdが500行未満
+- [ ] XMLタグが適切に閉じられている
 
-## Step 9: Create Slash Command
+## ステップ9：スラッシュコマンドを作成
 
 ```bash
 cat > ~/.claude/commands/{skill-name}.md << 'EOF'
 ---
-description: {Brief description}
-argument-hint: [{argument hint}]
+description: {簡単な説明}
+argument-hint: [{引数のヒント}]
 allowed-tools: Skill({skill-name})
 ---
 
-Invoke the {skill-name} skill for: $ARGUMENTS
+$ARGUMENTSのために{skill-name}スキルを呼び出します
 EOF
 ```
 
-## Step 10: Test
+## ステップ10：テスト
 
-Invoke the skill and observe:
-- Does it ask the right intake question?
-- Does it load the right workflow?
-- Does the workflow load the right references?
-- Does output match expectations?
+スキルを呼び出して以下を観察：
+- 正しい受付質問をしているか？
+- 正しいワークフローを読み込んでいるか？
+- ワークフローが正しいリファレンスを読み込んでいるか？
+- 出力が期待と一致しているか？
 
-Iterate based on real usage, not assumptions.
+仮定ではなく、実際の使用に基づいて反復します。
 </process>
 
 <success_criteria>
-Skill is complete when:
-- [ ] Requirements gathered with appropriate questions
-- [ ] API research done if external service involved
-- [ ] Directory structure correct
-- [ ] SKILL.md has valid frontmatter
-- [ ] Essential principles inline (if complex skill)
-- [ ] Intake question routes to correct workflow
-- [ ] All workflows have required_reading + process + success_criteria
-- [ ] References contain reusable domain knowledge
-- [ ] Slash command exists and works
-- [ ] Tested with real invocation
+スキルは以下の場合に完了：
+- [ ] 適切な質問で要件を収集
+- [ ] 外部サービスが関係する場合はAPIリサーチ完了
+- [ ] ディレクトリ構造が正しい
+- [ ] SKILL.mdに有効なフロントマターがある
+- [ ] 重要な原則がインライン（複雑なスキルの場合）
+- [ ] 受付質問が正しいワークフローにルーティング
+- [ ] すべてのワークフローにrequired_reading + process + success_criteriaを持つ
+- [ ] リファレンスに再利用可能なドメイン知識が含まれる
+- [ ] スラッシュコマンドが存在して機能する
+- [ ] 実際の呼び出しでテスト済み
 </success_criteria>

@@ -1,10 +1,10 @@
 <overview>
-This reference covers patterns for complex workflows, validation loops, and feedback cycles in skill authoring. All patterns use pure XML structure.
+このリファレンスは、スキル作成における複雑なワークフロー、検証ループ、およびフィードバックサイクルのパターンをカバーします。すべてのパターンは純粋XML構造を使用します。
 </overview>
 
 <complex_workflows>
 <principle>
-Break complex operations into clear, sequential steps. For particularly complex workflows, provide a checklist.
+複雑な操作を明確な順次ステップに分割します。特に複雑なワークフローの場合は、チェックリストを提供します。
 </principle>
 
 <pdf_forms_example>

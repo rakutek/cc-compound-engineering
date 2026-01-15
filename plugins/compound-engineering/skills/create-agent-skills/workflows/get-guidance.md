@@ -1,71 +1,71 @@
-# Workflow: Get Guidance on Skill Design
+# Workflow: スキル設計のガイダンスを得る
 
 <required_reading>
-**Read these reference files NOW:**
+**今すぐこれらのリファレンスファイルを読んでください:**
 1. references/core-principles.md
 2. references/recommended-structure.md
 </required_reading>
 
 <process>
-## Step 1: Understand the Problem Space
+## ステップ1: 問題空間を理解する
 
-Ask the user:
-- What task or domain are you trying to support?
-- Is this something you do repeatedly?
-- What makes it complex enough to need a skill?
+ユーザーに尋ねます:
+- サポートしようとしているタスクまたはドメインは何ですか？
+- これは繰り返し行うものですか？
+- スキルが必要なほど複雑なのは何ですか？
 
-## Step 2: Determine If a Skill Is Right
+## ステップ2: スキルが適切かどうかを判断する
 
-**Create a skill when:**
-- Task is repeated across multiple sessions
-- Domain knowledge doesn't change frequently
-- Complex enough to benefit from structure
-- Would save significant time if automated
+**スキルを作成すべき場合:**
+- 複数のセッションで繰り返されるタスク
+- ドメイン知識が頻繁に変わらない
+- 構造が役立つほど複雑
+- 自動化すれば大幅な時間節約になる
 
-**Don't create a skill when:**
-- One-off task (just do it directly)
-- Changes constantly (will be outdated quickly)
-- Too simple (overhead isn't worth it)
-- Better as a slash command (user-triggered, no context needed)
+**スキルを作成すべきではない場合:**
+- 1回限りのタスク（直接実行する）
+- 絶えず変化する（すぐに古くなる）
+- 簡単すぎる（オーバーヘッドに見合わない）
+- スラッシュコマンドの方が良い（ユーザーがトリガー、コンテキスト不要）
 
-Share this assessment with user.
+この評価をユーザーと共有します。
 
-## Step 3: Map the Workflows
+## ステップ3: ワークフローをマッピングする
 
-Ask: "What are the different things someone might want to do with this skill?"
+「このスキルで誰かがやりたいことは何ですか？」と尋ねます。
 
-Common patterns:
-- Create / Read / Update / Delete
-- Build / Debug / Ship
-- Setup / Use / Troubleshoot
-- Import / Process / Export
+一般的なパターン:
+- 作成 / 読み取り / 更新 / 削除
+- ビルド / デバッグ / シップ
+- セットアップ / 使用 / トラブルシューティング
+- インポート / 処理 / エクスポート
 
-Each distinct workflow = potential workflow file.
+異なるワークフロー = 潜在的なワークフローファイル。
 
-## Step 4: Identify Domain Knowledge
+## ステップ4: ドメイン知識を特定する
 
-Ask: "What knowledge is needed regardless of which workflow?"
+「どのワークフローに関係なく必要な知識は何ですか？」と尋ねます。
 
-This becomes references:
-- API patterns
-- Best practices
-- Common examples
-- Configuration details
+これがリファレンスになります:
+- APIパターン
+- ベストプラクティス
+- 一般的な例
+- 設定詳細
 
-## Step 5: Draft the Structure
+## ステップ5: 構造のドラフトを作成する
 
-Based on answers, recommend structure:
+回答に基づいて構造を推奨します:
 
-**If 1 workflow, simple knowledge:**
+**1つのワークフロー、シンプルな知識の場合:**
 ```
 skill-name/
-└── SKILL.md (everything in one file)
+└── SKILL.md（すべてを1ファイルに）
 ```
 
-**If 2+ workflows, shared knowledge:**
+**2つ以上のワークフロー、共有知識の場合:**
 ```
 skill-name/
-├── SKILL.md (router)
+├── SKILL.md（ルーター）
 ├── workflows/
 │   ├── workflow-a.md
 │   └── workflow-b.md
@@ -73,49 +73,49 @@ skill-name/
     └── shared-knowledge.md
 ```
 
-## Step 6: Identify Essential Principles
+## ステップ6: 基本原則を特定する
 
-Ask: "What rules should ALWAYS apply, no matter which workflow?"
+「どのワークフローに関係なく、常に適用すべきルールは何ですか？」と尋ねます。
 
-These become `<essential_principles>` in SKILL.md.
+これらがSKILL.mdの`<essential_principles>`になります。
 
-Examples:
-- "Always verify before reporting success"
-- "Never store credentials in code"
-- "Ask before making destructive changes"
+例:
+- 「成功を報告する前に必ず検証する」
+- 「認証情報をコードに保存しない」
+- 「破壊的な変更を行う前に確認する」
 
-## Step 7: Present Recommendation
+## ステップ7: 推奨事項を提示する
 
-Summarize:
-- Recommended structure (simple vs router pattern)
-- List of workflows
-- List of references
-- Essential principles
+要約します:
+- 推奨される構造（シンプルまたはルーターパターン）
+- ワークフローのリスト
+- リファレンスのリスト
+- 基本原則
 
-Ask: "Does this structure make sense? Ready to build it?"
+「この構造は意味がありますか？構築する準備ができていますか？」と尋ねます。
 
-If yes → offer to switch to "Create a new skill" workflow
-If no → clarify and iterate
+「はい」の場合 → 「新しいスキルを作成する」ワークフローへの切り替えを提案
+「いいえ」の場合 → 明確化して繰り返す
 </process>
 
 <decision_framework>
-## Quick Decision Framework
+## 迅速意思決定フレームワーク
 
-| Situation | Recommendation |
+| 状況 | 推奨 |
 |-----------|----------------|
-| Single task, repeat often | Simple skill |
-| Multiple related tasks | Router + workflows |
-| Complex domain, many patterns | Router + workflows + references |
-| User-triggered, fresh context | Slash command, not skill |
-| One-off task | No skill needed |
+| 1つのタスク、頻繁に繰り返す | シンプルスキル |
+| 複数の関連タスク | ルーター + ワークフロー |
+| 複雑なドメイン、多くのパターン | ルーター + ワークフロー + リファレンス |
+| ユーザーがトリガー、新鮮なコンテキスト | スラッシュコマンド、スキルではない |
+| 1回限りのタスク | スキル不要 |
 </decision_framework>
 
 <success_criteria>
-Guidance is complete when:
-- [ ] User understands if they need a skill
-- [ ] Structure is recommended and explained
-- [ ] Workflows are identified
-- [ ] References are identified
-- [ ] Essential principles are identified
-- [ ] User is ready to build (or decided not to)
+ガイダンスは以下が完了したときに完了です:
+- [ ] ユーザーがスキルが必要かどうか理解している
+- [ ] 構造が推奨され、説明されている
+- [ ] ワークフローが特定されている
+- [ ] リファレンスが特定されている
+- [ ] 基本原則が特定されている
+- [ ] ユーザーが構築する準備ができている（または作成しないことに決めた）
 </success_criteria>

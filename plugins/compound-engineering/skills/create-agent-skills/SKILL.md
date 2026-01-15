@@ -1,299 +1,299 @@
 ---
 name: creating-agent-skills
-description: Expert guidance for creating, writing, and refining Claude Code Skills. Use when working with SKILL.md files, authoring new skills, improving existing skills, or understanding skill structure and best practices.
+description: Claude Code スキルの作成、執筆、洗練に関するエキスパートガイダンス。SKILL.mdファイルでの作業、新しいスキルの作成、既存スキルの改善、またはスキル構造とベストプラクティスの理解に使用します。
 ---
 
-# Creating Agent Skills
+# エージェントスキルの作成
 
-This skill teaches how to create effective Claude Code Skills following Anthropic's official specification.
+このスキルは、Anthropicの公式仕様に従った効果的なClaude Code スキルの作成方法を教えます。
 
-## Core Principles
+## コア原則
 
-### 1. Skills Are Prompts
+### 1. スキルはプロンプト
 
-All prompting best practices apply. Be clear, be direct. Assume Claude is smart - only add context Claude doesn't have.
+すべてのプロンプティングベストプラクティスが適用されます。明確に、直接的に。Claudeは賢いと仮定し、Claudeが持っていないコンテキストのみを追加します。
 
-### 2. Standard Markdown Format
+### 2. 標準Markdownフォーマット
 
-Use YAML frontmatter + markdown body. **No XML tags** - use standard markdown headings.
+YAMLフロントマター + Markdownボディを使用します。**XMLタグは使用しない** - 標準Markdownの見出しを使用します。
 
 ```markdown
 ---
 name: my-skill-name
-description: What it does and when to use it
+description: 何をするか、いつ使用するか
 ---
 
-# My Skill Name
+# マイスキル名
 
-## Quick Start
-Immediate actionable guidance...
+## クイックスタート
+すぐに実行可能なガイダンス...
 
-## Instructions
-Step-by-step procedures...
+## 手順
+ステップバイステップの手順...
 
-## Examples
-Concrete usage examples...
+## 例
+具体的な使用例...
 ```
 
-### 3. Progressive Disclosure
+### 3. 段階的開示
 
-Keep SKILL.md under 500 lines. Split detailed content into reference files. Load only what's needed.
+SKILL.mdは500行未満に保ちます。詳細なコンテンツはリファレンスファイルに分割します。必要なものだけを読み込みます。
 
 ```
 my-skill/
-├── SKILL.md              # Entry point (required)
-├── reference.md          # Detailed docs (loaded when needed)
-├── examples.md           # Usage examples
-└── scripts/              # Utility scripts (executed, not loaded)
+├── SKILL.md              # エントリーポイント（必須）
+├── reference.md          # 詳細ドキュメント（必要に応じて読み込み）
+├── examples.md           # 使用例
+└── scripts/              # ユーティリティスクリプト（実行されるが読み込まれない）
 ```
 
-### 4. Effective Descriptions
+### 4. 効果的な説明
 
-The description field enables skill discovery. Include both what the skill does AND when to use it. Write in third person.
+description フィールドはスキルの発見を可能にします。スキルが何をするかとそれをいつ使用するかの両方を含めます。三人称で記述します。
 
-**Good:**
+**良い例：**
 ```yaml
-description: Extracts text and tables from PDF files, fills forms, merges documents. Use when working with PDF files or when the user mentions PDFs, forms, or document extraction.
+description: PDFファイルからテキストとテーブルを抽出し、フォームを埋め、ドキュメントをマージします。PDFファイルを扱う場合、またはユーザーがPDF、フォーム、ドキュメント抽出に言及した場合に使用します。
 ```
 
-**Bad:**
+**悪い例：**
 ```yaml
-description: Helps with documents
+description: ドキュメントのヘルプ
 ```
 
-## Skill Structure
+## スキル構造
 
-### Required Frontmatter
+### 必須フロントマター
 
-| Field | Required | Max Length | Description |
+| フィールド | 必須 | 最大長 | 説明 |
 |-------|----------|------------|-------------|
-| `name` | Yes | 64 chars | Lowercase letters, numbers, hyphens only |
-| `description` | Yes | 1024 chars | What it does AND when to use it |
-| `allowed-tools` | No | - | Tools Claude can use without asking |
-| `model` | No | - | Specific model to use |
+| `name` | はい | 64文字 | 小文字、数字、ハイフンのみ |
+| `description` | はい | 1024文字 | 何をするか、いつ使用するか |
+| `allowed-tools` | いいえ | - | Claudeが尋ねずに使用できるツール |
+| `model` | いいえ | - | 使用する特定のモデル |
 
-### Naming Conventions
+### 命名規則
 
-Use **gerund form** (verb + -ing) for skill names:
+スキル名には **動名詞形**（動詞 + -ing）を使用します：
 
 - `processing-pdfs`
 - `analyzing-spreadsheets`
 - `generating-commit-messages`
 - `reviewing-code`
 
-Avoid: `helper`, `utils`, `tools`, `anthropic-*`, `claude-*`
+避ける：`helper`、`utils`、`tools`、`anthropic-*`、`claude-*`
 
-### Body Structure
+### ボディ構造
 
-Use standard markdown headings:
+標準Markdownの見出しを使用します：
 
 ```markdown
-# Skill Name
+# スキル名
 
-## Quick Start
-Fastest path to value...
+## クイックスタート
+最速の価値提供パス...
 
-## Instructions
-Core guidance Claude follows...
+## 手順
+Claudeが従うコアガイダンス...
 
-## Examples
-Input/output pairs showing expected behavior...
+## 例
+期待される動作を示す入出力ペア...
 
-## Advanced Features
-Additional capabilities (link to reference files)...
+## 高度な機能
+追加機能（リファレンスファイルへのリンク）...
 
-## Guidelines
-Rules and constraints...
+## ガイドライン
+ルールと制約...
 ```
 
-## What Would You Like To Do?
+## 何をしたいですか？
 
-1. **Create new skill** - Build from scratch
-2. **Audit existing skill** - Check against best practices
-3. **Add component** - Add workflow/reference/example
-4. **Get guidance** - Understand skill design
+1. **新しいスキルを作成** - ゼロから構築
+2. **既存のスキルを監査** - ベストプラクティスに対してチェック
+3. **コンポーネントを追加** - ワークフロー/リファレンス/例を追加
+4. **ガイダンスを取得** - スキル設計を理解
 
-## Creating a New Skill
+## 新しいスキルの作成
 
-### Step 1: Choose Type
+### ステップ1：タイプを選択
 
-**Simple skill (single file):**
-- Under 500 lines
-- Self-contained guidance
-- No complex workflows
+**シンプルスキル（単一ファイル）：**
+- 500行未満
+- 自己完結型ガイダンス
+- 複雑なワークフローなし
 
-**Progressive disclosure skill (multiple files):**
-- SKILL.md as overview
-- Reference files for detailed docs
-- Scripts for utilities
+**段階的開示スキル（複数ファイル）：**
+- SKILL.mdを概要として
+- 詳細ドキュメント用のリファレンスファイル
+- ユーティリティ用のスクリプト
 
-### Step 2: Create SKILL.md
+### ステップ2：SKILL.mdを作成
 
 ```markdown
 ---
 name: your-skill-name
-description: [What it does]. Use when [trigger conditions].
+description: [何をするか]。[トリガー条件]の場合に使用します。
 ---
 
-# Your Skill Name
+# あなたのスキル名
 
-## Quick Start
+## クイックスタート
 
-[Immediate actionable example]
+[すぐに実行可能な例]
 
 ```[language]
-[Code example]
+[コード例]
 ```
 
-## Instructions
+## 手順
 
-[Core guidance]
+[コアガイダンス]
 
-## Examples
+## 例
 
-**Example 1:**
-Input: [description]
-Output:
+**例1：**
+入力：[説明]
+出力：
 ```
-[result]
-```
-
-## Guidelines
-
-- [Constraint 1]
-- [Constraint 2]
+[結果]
 ```
 
-### Step 3: Add Reference Files (If Needed)
+## ガイドライン
 
-Link from SKILL.md to detailed content:
+- [制約1]
+- [制約2]
+```
+
+### ステップ3：リファレンスファイルを追加（必要に応じて）
+
+SKILL.mdから詳細コンテンツへリンク：
 
 ```markdown
-For API reference, see [REFERENCE.md](REFERENCE.md).
-For form filling guide, see [FORMS.md](FORMS.md).
+API リファレンスについては、[REFERENCE.md](REFERENCE.md)を参照してください。
+フォーム入力ガイドについては、[FORMS.md](FORMS.md)を参照してください。
 ```
 
-Keep references **one level deep** from SKILL.md.
+リファレンスはSKILL.mdから**1階層まで**に保ちます。
 
-### Step 4: Add Scripts (If Needed)
+### ステップ4：スクリプトを追加（必要に応じて）
 
-Scripts execute without loading into context:
+スクリプトはコンテキストに読み込まれずに実行されます：
 
 ```markdown
-## Utility Scripts
+## ユーティリティスクリプト
 
-Extract fields:
+フィールドを抽出：
 ```bash
 python scripts/analyze.py input.pdf > fields.json
 ```
 ```
 
-### Step 5: Test With Real Usage
+### ステップ5：実際の使用でテスト
 
-1. Test with actual tasks, not test scenarios
-2. Observe where Claude struggles
-3. Refine based on real behavior
-4. Test with Haiku, Sonnet, and Opus
+1. テストシナリオではなく、実際のタスクでテスト
+2. Claudeが苦労する場所を観察
+3. 実際の動作に基づいて改善
+4. Haiku、Sonnet、Opusでテスト
 
-## Auditing Existing Skills
+## 既存スキルの監査
 
-Check against this rubric:
+この評価基準に対してチェック：
 
-- [ ] Valid YAML frontmatter (name + description)
-- [ ] Description includes trigger keywords
-- [ ] Uses standard markdown headings (not XML tags)
-- [ ] SKILL.md under 500 lines
-- [ ] References one level deep
-- [ ] Examples are concrete, not abstract
-- [ ] Consistent terminology
-- [ ] No time-sensitive information
-- [ ] Scripts handle errors explicitly
+- [ ] 有効なYAMLフロントマター（name + description）
+- [ ] descriptionにトリガーキーワードを含む
+- [ ] 標準Markdownの見出しを使用（XMLタグではない）
+- [ ] SKILL.mdが500行未満
+- [ ] リファレンスは1階層まで
+- [ ] 例は抽象的ではなく具体的
+- [ ] 一貫した用語
+- [ ] 時間に依存する情報なし
+- [ ] スクリプトは明示的にエラーを処理
 
-## Common Patterns
+## 共通パターン
 
-### Template Pattern
+### テンプレートパターン
 
-Provide output templates for consistent results:
-
-```markdown
-## Report Template
+一貫した結果のために出力テンプレートを提供：
 
 ```markdown
-# [Analysis Title]
-
-## Executive Summary
-[One paragraph overview]
-
-## Key Findings
-- Finding 1
-- Finding 2
-
-## Recommendations
-1. [Action item]
-2. [Action item]
-```
-```
-
-### Workflow Pattern
-
-For complex multi-step tasks:
+## レポートテンプレート
 
 ```markdown
-## Migration Workflow
+# [分析タイトル]
 
-Copy this checklist:
+## エグゼクティブサマリー
+[1段落の概要]
+
+## 主な発見
+- 発見1
+- 発見2
+
+## 推奨事項
+1. [アクションアイテム]
+2. [アクションアイテム]
+```
+```
+
+### ワークフローパターン
+
+複雑な複数ステップのタスク用：
+
+```markdown
+## マイグレーションワークフロー
+
+このチェックリストをコピー：
 
 ```
-- [ ] Step 1: Backup database
-- [ ] Step 2: Run migration script
-- [ ] Step 3: Validate output
-- [ ] Step 4: Update configuration
+- [ ] ステップ1：データベースのバックアップ
+- [ ] ステップ2：マイグレーションスクリプトを実行
+- [ ] ステップ3：出力を検証
+- [ ] ステップ4：設定を更新
 ```
 
-**Step 1: Backup database**
-Run: `./scripts/backup.sh`
+**ステップ1：データベースのバックアップ**
+実行：`./scripts/backup.sh`
 ...
 ```
 
-### Conditional Pattern
+### 条件パターン
 
-Guide through decision points:
+決定ポイントをガイド：
 
 ```markdown
-## Choose Your Approach
+## アプローチを選択
 
-**Creating new content?** Follow "Creation workflow" below.
-**Editing existing?** Follow "Editing workflow" below.
+**新しいコンテンツを作成？** 以下の「作成ワークフロー」に従います。
+**既存を編集？** 以下の「編集ワークフロー」に従います。
 ```
 
-## Anti-Patterns to Avoid
+## 避けるべきアンチパターン
 
-- **XML tags in body** - Use markdown headings instead
-- **Vague descriptions** - Be specific with trigger keywords
-- **Deep nesting** - Keep references one level from SKILL.md
-- **Too many options** - Provide a default with escape hatch
-- **Windows paths** - Always use forward slashes
-- **Punting to Claude** - Scripts should handle errors
-- **Time-sensitive info** - Use "old patterns" section instead
+- **ボディ内のXMLタグ** - 代わりにMarkdownの見出しを使用
+- **曖昧な説明** - トリガーキーワードで具体的に
+- **深いネスト** - リファレンスはSKILL.mdから1階層に保つ
+- **選択肢が多すぎる** - デフォルトと逃げ道を提供
+- **Windowsパス** - 常にスラッシュを使用
+- **Claudeへの丸投げ** - スクリプトはエラーを処理すべき
+- **時間に依存する情報** - 代わりに「古いパターン」セクションを使用
 
-## Reference Files
+## リファレンスファイル
 
-For detailed guidance, see:
+詳細なガイダンスについては以下を参照：
 
-- [official-spec.md](references/official-spec.md) - Anthropic's official skill specification
-- [best-practices.md](references/best-practices.md) - Skill authoring best practices
+- [official-spec.md](references/official-spec.md) - Anthropicの公式スキル仕様
+- [best-practices.md](references/best-practices.md) - スキル作成のベストプラクティス
 
-## Success Criteria
+## 成功基準
 
-A well-structured skill:
-- Has valid YAML frontmatter with descriptive name and description
-- Uses standard markdown headings (not XML tags)
-- Keeps SKILL.md under 500 lines
-- Links to reference files for detailed content
-- Includes concrete examples with input/output pairs
-- Has been tested with real usage
+よく構造化されたスキル：
+- 説明的なnameとdescriptionを持つ有効なYAMLフロントマター
+- 標準Markdownの見出しを使用（XMLタグではない）
+- SKILL.mdが500行未満
+- 詳細コンテンツ用のリファレンスファイルへのリンク
+- 入出力ペアを含む具体的な例
+- 実際の使用でテスト済み
 
-Sources:
+出典：
 - [Agent Skills - Claude Code Docs](https://code.claude.com/docs/en/skills)
 - [Skill authoring best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
 - [GitHub - anthropics/skills](https://github.com/anthropics/skills)

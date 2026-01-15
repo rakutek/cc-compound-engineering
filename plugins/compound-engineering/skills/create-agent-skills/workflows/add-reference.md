@@ -1,96 +1,96 @@
-# Workflow: Add a Reference to Existing Skill
+# Workflow: 既存のスキルにリファレンスを追加する
 
 <required_reading>
-**Read these reference files NOW:**
+**今すぐこれらのリファレンスファイルを読んでください:**
 1. references/recommended-structure.md
 2. references/skill-structure.md
 </required_reading>
 
 <process>
-## Step 1: Select the Skill
+## ステップ1: スキルを選択する
 
 ```bash
 ls ~/.claude/skills/
 ```
 
-Present numbered list, ask: "Which skill needs a new reference?"
+番号付きリストを表示し、「どのスキルに新しいリファレンスが必要ですか？」と尋ねます。
 
-## Step 2: Analyze Current Structure
+## ステップ2: 現在の構造を分析する
 
 ```bash
 cat ~/.claude/skills/{skill-name}/SKILL.md
 ls ~/.claude/skills/{skill-name}/references/ 2>/dev/null
 ```
 
-Determine:
-- **Has references/ folder?** → Good, can add directly
-- **Simple skill?** → May need to create references/ first
-- **What references exist?** → Understand the knowledge landscape
+以下を判断します:
+- **references/ フォルダがあるか？** → 良好、直接追加できます
+- **シンプルなスキルか？** → 最初にreferences/ を作成する必要があるかもしれません
+- **どのようなリファレンスが存在するか？** → 知識の全体像を理解します
 
-Report current references to user.
+現在のリファレンスをユーザーに報告します。
 
-## Step 3: Gather Reference Requirements
+## ステップ3: リファレンス要件を収集する
 
-Ask:
-- What knowledge should this reference contain?
-- Which workflows will use it?
-- Is this reusable across workflows or specific to one?
+以下を尋ねます:
+- このリファレンスにはどのような知識を含める必要がありますか？
+- どのワークフローで使用されますか？
+- これは複数のワークフローで再利用可能ですか、それとも1つに特化していますか？
 
-**If specific to one workflow** → Consider putting it inline in that workflow instead.
+**1つのワークフローに特化している場合** → 代わりにそのワークフローにインラインで入れることを検討してください。
 
-## Step 4: Create the Reference File
+## ステップ4: リファレンスファイルを作成する
 
-Create `references/{reference-name}.md`:
+`references/{reference-name}.md` を作成します:
 
-Use semantic XML tags to structure the content:
+セマンティックなXMLタグを使用してコンテンツを構造化します:
 ```xml
 <overview>
-Brief description of what this reference covers
+このリファレンスが何をカバーするかの簡単な説明
 </overview>
 
 <patterns>
-## Common Patterns
-[Reusable patterns, examples, code snippets]
+## 共通パターン
+[再利用可能なパターン、例、コードスニペット]
 </patterns>
 
 <guidelines>
-## Guidelines
-[Best practices, rules, constraints]
+## ガイドライン
+[ベストプラクティス、ルール、制約]
 </guidelines>
 
 <examples>
-## Examples
-[Concrete examples with explanation]
+## 例
+[説明付きの具体的な例]
 </examples>
 ```
 
-## Step 5: Update SKILL.md
+## ステップ5: SKILL.mdを更新する
 
-Add the new reference to `<reference_index>`:
+新しいリファレンスを`<reference_index>`に追加します:
 ```markdown
 **Category:** existing.md, new-reference.md
 ```
 
-## Step 6: Update Workflows That Need It
+## ステップ6: 必要なワークフローを更新する
 
-For each workflow that should use this reference:
+このリファレンスを使用すべき各ワークフローについて:
 
-1. Read the workflow file
-2. Add to its `<required_reading>` section
-3. Verify the workflow still makes sense with this addition
+1. ワークフローファイルを読む
+2. その`<required_reading>`セクションに追加する
+3. この追加でワークフローがまだ意味をなすことを確認する
 
-## Step 7: Verify
+## ステップ7: 検証する
 
-- [ ] Reference file exists and is well-structured
-- [ ] Reference is in SKILL.md reference_index
-- [ ] Relevant workflows have it in required_reading
-- [ ] No broken references
+- [ ] リファレンスファイルが存在し、適切に構造化されている
+- [ ] リファレンスがSKILL.mdのreference_indexにある
+- [ ] 関連するワークフローのrequired_readingにある
+- [ ] 壊れたリファレンスがない
 </process>
 
 <success_criteria>
-Reference addition is complete when:
-- [ ] Reference file created with useful content
-- [ ] Added to reference_index in SKILL.md
-- [ ] Relevant workflows updated to read it
-- [ ] Content is reusable (not workflow-specific)
+リファレンスの追加は以下が完了したときに完了です:
+- [ ] 有用なコンテンツを含むリファレンスファイルが作成された
+- [ ] SKILL.mdのreference_indexに追加された
+- [ ] 関連するワークフローがそれを読むように更新された
+- [ ] コンテンツが再利用可能である（ワークフロー固有ではない）
 </success_criteria>

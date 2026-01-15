@@ -1,93 +1,93 @@
-# Workflow: Add a Script to a Skill
+# Workflow: スキルにスクリプトを追加する
 
 <required_reading>
-**Read these reference files NOW:**
+**今すぐこれらのリファレンスファイルを読んでください:**
 1. references/using-scripts.md
 </required_reading>
 
 <process>
-## Step 1: Identify the Skill
+## ステップ1: スキルを特定する
 
-Ask (if not already provided):
-- Which skill needs a script?
-- What operation should the script perform?
+（まだ提供されていない場合）以下を尋ねます:
+- どのスキルにスクリプトが必要ですか？
+- スクリプトはどのような操作を実行すべきですか？
 
-## Step 2: Analyze Script Need
+## ステップ2: スクリプトの必要性を分析する
 
-Confirm this is a good script candidate:
-- [ ] Same code runs across multiple invocations
-- [ ] Operation is error-prone when rewritten
-- [ ] Consistency matters more than flexibility
+これが良いスクリプト候補であることを確認します:
+- [ ] 複数の呼び出しで同じコードが実行される
+- [ ] 書き直すとエラーが発生しやすい操作である
+- [ ] 柔軟性よりも一貫性が重要である
 
-If not a good fit, suggest alternatives (inline code in workflow, reference examples).
+適切でない場合は、代替案（ワークフロー内のインラインコード、リファレンス例）を提案します。
 
-## Step 3: Create Scripts Directory
+## ステップ3: scriptsディレクトリを作成する
 
 ```bash
 mkdir -p ~/.claude/skills/{skill-name}/scripts
 ```
 
-## Step 4: Design Script
+## ステップ4: スクリプトを設計する
 
-Gather requirements:
-- What inputs does the script need?
-- What should it output or accomplish?
-- What errors might occur?
-- Should it be idempotent?
+要件を収集します:
+- スクリプトにはどのような入力が必要ですか？
+- 何を出力または実行すべきですか？
+- どのようなエラーが発生する可能性がありますか？
+- 冪等性を持つべきですか？
 
-Choose language:
-- **bash** - Shell operations, file manipulation, CLI tools
-- **python** - Data processing, API calls, complex logic
-- **node/ts** - JavaScript ecosystem, async operations
+言語を選択します:
+- **bash** - シェル操作、ファイル操作、CLIツール
+- **python** - データ処理、API呼び出し、複雑なロジック
+- **node/ts** - JavaScriptエコシステム、非同期操作
 
-## Step 5: Write Script File
+## ステップ5: スクリプトファイルを書く
 
-Create `scripts/{script-name}.{ext}` with:
-- Purpose comment at top
-- Usage instructions
-- Input validation
-- Error handling
-- Clear output/feedback
+以下を含む`scripts/{script-name}.{ext}`を作成します:
+- 冒頭の目的コメント
+- 使用方法の説明
+- 入力検証
+- エラーハンドリング
+- 明確な出力/フィードバック
 
-For bash scripts:
+bashスクリプトの場合:
 ```bash
 #!/bin/bash
 set -euo pipefail
 ```
 
-## Step 6: Make Executable (if bash)
+## ステップ6: 実行可能にする（bashの場合）
 
 ```bash
 chmod +x ~/.claude/skills/{skill-name}/scripts/{script-name}.sh
 ```
 
-## Step 7: Update Workflow to Use Script
+## ステップ7: スクリプトを使用するようにワークフローを更新する
 
-Find the workflow that needs this operation. Add:
+この操作が必要なワークフローを見つけます。以下を追加します:
 ```xml
 <process>
 ...
-N. Run `scripts/{script-name}.sh [arguments]`
-N+1. Verify operation succeeded
+N. `scripts/{script-name}.sh [引数]`を実行
+N+1. 操作が成功したことを確認
 ...
 </process>
 ```
 
-## Step 8: Test
+## ステップ8: テストする
 
-Invoke the skill workflow and verify:
-- Script runs at the right step
-- Inputs are passed correctly
-- Errors are handled gracefully
-- Output matches expectations
+スキルワークフローを呼び出して検証します:
+- スクリプトが適切なステップで実行される
+- 入力が正しく渡される
+- エラーが適切に処理される
+- 出力が期待通りである
 </process>
 
 <success_criteria>
-Script is complete when:
-- [ ] scripts/ directory exists
-- [ ] Script file has proper structure (comments, validation, error handling)
-- [ ] Script is executable (if bash)
-- [ ] At least one workflow references the script
-- [ ] No hardcoded secrets or credentials
-- [ ] Tested with real invocation
+スクリプトは以下が完了したときに完了です:
+- [ ] scripts/ ディレクトリが存在する
+- [ ] スクリプトファイルが適切な構造を持っている（コメント、検証、エラーハンドリング）
+- [ ] スクリプトが実行可能である（bashの場合）
+- [ ] 少なくとも1つのワークフローがスクリプトを参照している
+- [ ] ハードコードされたシークレットや認証情報がない
+- [ ] 実際の呼び出しでテスト済み
 </success_criteria>

@@ -1,36 +1,36 @@
 <overview>
-When building skills that make API calls requiring credentials (API keys, tokens, secrets), follow this protocol to prevent credentials from appearing in chat.
+認証情報(APIキー、トークン、シークレット)を必要とするAPIコールを行うスキルを構築する際、チャットに認証情報が表示されないようにするため、このプロトコルに従ってください。
 </overview>
 
 <the_problem>
-Raw curl commands with environment variables expose credentials:
+環境変数を含む生のcurlコマンドは認証情報を露出します:
 
 ```bash
-# ❌ BAD - API key visible in chat
+# ❌ 悪い例 - APIキーがチャットに表示される
 curl -H "Authorization: Bearer $API_KEY" https://api.example.com/data
 ```
 
-When Claude executes this, the full command with expanded `$API_KEY` appears in the conversation.
+Claudeがこれを実行すると、展開された`$API_KEY`を含む完全なコマンドが会話に表示されます。
 </the_problem>
 
 <the_solution>
-Use `~/.claude/scripts/secure-api.sh` - a wrapper that loads credentials internally.
+`~/.claude/scripts/secure-api.sh`を使用します - 認証情報を内部で読み込むラッパーです。
 
 <for_supported_services>
 ```bash
-# ✅ GOOD - No credentials visible
+# ✅ 良い例 - 認証情報は表示されない
 ~/.claude/scripts/secure-api.sh <service> <operation> [args]
 
-# Examples:
+# 例:
 ~/.claude/scripts/secure-api.sh facebook list-campaigns
 ~/.claude/scripts/secure-api.sh ghl search-contact "email@example.com"
 ```
 </for_supported_services>
 
 <adding_new_services>
-When building a new skill that requires API calls:
+APIコールを必要とする新しいスキルを構築する場合:
 
-1. **Add operations to the wrapper** (`~/.claude/scripts/secure-api.sh`):
+1. **ラッパーに操作を追加**(`~/.claude/scripts/secure-api.sh`):
 
 ```bash
 case "$SERVICE" in
@@ -56,10 +56,10 @@ case "$SERVICE" in
 esac
 ```
 
-2. **Add profile support to the wrapper** (if service needs multiple accounts):
+2. **ラッパーにプロファイルサポートを追加**(サービスが複数のアカウントを必要とする場合):
 
 ```bash
-# In secure-api.sh, add to profile remapping section:
+# secure-api.sh内のプロファイルリマッピングセクションに追加:
 yourservice)
     SERVICE_UPPER="YOURSERVICE"
     YOURSERVICE_API_KEY=$(eval echo \$${SERVICE_UPPER}_${PROFILE_UPPER}_API_KEY)
@@ -67,73 +67,73 @@ yourservice)
     ;;
 ```
 
-3. **Add credential placeholders to `~/.claude/.env`** using profile naming:
+3. **`~/.claude/.env`に認証情報プレースホルダーを追加**プロファイル命名を使用:
 
 ```bash
-# Check if entries already exist
+# エントリが既に存在するか確認
 grep -q "YOURSERVICE_MAIN_API_KEY=" ~/.claude/.env 2>/dev/null || \
   echo -e "\n# Your Service - Main profile\nYOURSERVICE_MAIN_API_KEY=\nYOURSERVICE_MAIN_ACCOUNT_ID=" >> ~/.claude/.env
 
 echo "Added credential placeholders to ~/.claude/.env - user needs to fill them in"
 ```
 
-4. **Document profile workflow in your SKILL.md**:
+4. **SKILL.mdにプロファイルワークフローを文書化**:
 
 ```markdown
-## Profile Selection Workflow
+## プロファイル選択ワークフロー
 
-**CRITICAL:** Always use profile selection to prevent using wrong account credentials.
+**重要:** 誤ったアカウント認証情報の使用を防ぐため、常にプロファイル選択を使用してください。
 
-### When user requests YourService operation:
+### ユーザーがYourService操作をリクエストした時:
 
-1. **Check for saved profile:**
+1. **保存されたプロファイルを確認:**
    ```bash
    ~/.claude/scripts/profile-state get yourservice
    ```
 
-2. **If no profile saved, discover available profiles:**
+2. **プロファイルが保存されていない場合、利用可能なプロファイルを探す:**
    ```bash
    ~/.claude/scripts/list-profiles yourservice
    ```
 
-3. **If only ONE profile:** Use it automatically and announce:
+3. **プロファイルが1つのみの場合:** 自動的に使用し、通知:
    ```
    "Using YourService profile 'main' to list items..."
    ```
 
-4. **If MULTIPLE profiles:** Ask user which one:
+4. **複数のプロファイルがある場合:** ユーザーに選択を求める:
    ```
    "Which YourService profile: main, clienta, or clientb?"
    ```
 
-5. **Save user's selection:**
+5. **ユーザーの選択を保存:**
    ```bash
    ~/.claude/scripts/profile-state set yourservice <selected_profile>
    ```
 
-6. **Always announce which profile before calling API:**
+6. **API呼び出し前に常に使用するプロファイルを通知:**
    ```
    "Using YourService profile 'main' to list items..."
    ```
 
-7. **Make API call with profile:**
+7. **プロファイルを指定してAPIコール:**
    ```bash
    ~/.claude/scripts/secure-api.sh yourservice:<profile> list-items
    ```
 
-## Secure API Calls
+## セキュアなAPIコール
 
-All API calls use profile syntax:
+すべてのAPIコールはプロファイル構文を使用:
 
 ```bash
 ~/.claude/scripts/secure-api.sh yourservice:<profile> <operation> [args]
 
-# Examples:
+# 例:
 ~/.claude/scripts/secure-api.sh yourservice:main list-items
 ~/.claude/scripts/secure-api.sh yourservice:main get-item <ITEM_ID>
 ```
 
-**Profile persists for session:** Once selected, use same profile for subsequent operations unless user explicitly changes it.
+**プロファイルはセッション中持続:** 一度選択されると、ユーザーが明示的に変更しない限り、後続の操作で同じプロファイルを使用します。
 ```
 </adding_new_services>
 </the_solution>
@@ -157,7 +157,7 @@ curl -s -X POST \
     "https://api.example.com/items/$ITEM_ID"
 ```
 
-Usage:
+使用法:
 ```bash
 echo '{"name":"value"}' | ~/.claude/scripts/secure-api.sh service create-item
 ```
@@ -175,9 +175,9 @@ curl -s -X POST \
 </pattern_guidelines>
 
 <credential_storage>
-**Location:** `~/.claude/.env` (global for all skills, accessible from any directory)
+**場所:** `~/.claude/.env` (すべてのスキルで使用できるグローバル設定、どのディレクトリからでもアクセス可能)
 
-**Format:**
+**形式:**
 ```bash
 # Service credentials
 SERVICE_API_KEY=your-key-here
@@ -188,7 +188,7 @@ OTHER_API_TOKEN=token-here
 OTHER_BASE_URL=https://api.other.com
 ```
 
-**Loading in script:**
+**スクリプトでの読み込み:**
 ```bash
 set -a
 source ~/.claude/.env 2>/dev/null || { echo "Error: ~/.claude/.env not found" >&2; exit 1; }
@@ -197,30 +197,30 @@ set +a
 </credential_storage>
 
 <best_practices>
-1. **Never use raw curl with `$VARIABLE` in skill examples** - always use the wrapper
-2. **Add all operations to the wrapper** - don't make users figure out curl syntax
-3. **Auto-create credential placeholders** - add empty fields to `~/.claude/.env` immediately when creating the skill
-4. **Keep credentials in `~/.claude/.env`** - one central location, works everywhere
-5. **Document each operation** - show examples in SKILL.md
-6. **Handle errors gracefully** - check for missing env vars, show helpful error messages
+1. **スキルの例では`$VARIABLE`を含む生のcurlを使用しない** - 常にラッパーを使用
+2. **すべての操作をラッパーに追加** - ユーザーにcurl構文を考えさせない
+3. **認証情報プレースホルダーを自動作成** - スキル作成時に即座に`~/.claude/.env`に空のフィールドを追加
+4. **認証情報は`~/.claude/.env`に保存** - 1つの中央管理場所、どこでも機能
+5. **各操作を文書化** - SKILL.mdに例を表示
+6. **エラーを適切に処理** - 環境変数の欠落をチェック、役立つエラーメッセージを表示
 </best_practices>
 
 <testing>
-Test the wrapper without exposing credentials:
+認証情報を露出せずにラッパーをテスト:
 
 ```bash
-# This command appears in chat
+# このコマンドがチャットに表示される
 ~/.claude/scripts/secure-api.sh facebook list-campaigns
 
-# But API keys never appear - they're loaded inside the script
+# しかしAPIキーは表示されない - スクリプト内部で読み込まれる
 ```
 
-Verify credentials are loaded:
+認証情報が読み込まれているか確認:
 ```bash
-# Check .env exists
+# .envが存在するか確認
 ls -la ~/.claude/.env
 
-# Check specific variables (without showing values)
+# 特定の変数を確認(値は表示しない)
 grep -q "YOUR_API_KEY=" ~/.claude/.env && echo "API key configured" || echo "API key missing"
 ```
 </testing>

@@ -1,21 +1,21 @@
-# Skill Authoring Best Practices
+# スキル作成のベストプラクティス
 
 Source: [platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
 
-## Core Principles
+## コアプリンシプル
 
-### Concise is Key
+### 簡潔さが鍵
 
-The context window is a public good. Your Skill shares the context window with everything else Claude needs to know.
+コンテキストウィンドウは公共財です。あなたのスキルは、Claudeが知る必要のある他のすべてのものとコンテキストウィンドウを共有します。
 
-**Default assumption**: Claude is already very smart. Only add context Claude doesn't already have.
+**デフォルトの前提**: Claudeはすでに非常に賢いです。Claudeがまだ持っていないコンテキストのみを追加してください。
 
-Challenge each piece of information:
-- "Does Claude really need this explanation?"
-- "Can I assume Claude knows this?"
-- "Does this paragraph justify its token cost?"
+各情報に問いかけます:
+- "Claudeは本当にこの説明が必要か?"
+- "Claudeがこれを知っていると仮定できるか?"
+- "この段落はそのトークンコストを正当化できるか?"
 
-**Good example (concise, ~50 tokens):**
+**良い例 (簡潔、約50トークン):**
 ```markdown
 ## Extract PDF text
 
@@ -28,7 +28,7 @@ with pdfplumber.open("file.pdf") as pdf:
 ```
 ```
 
-**Bad example (too verbose, ~150 tokens):**
+**悪い例 (冗長すぎる、約150トークン):**
 ```markdown
 ## Extract PDF text
 
@@ -37,11 +37,11 @@ text, images, and other content. To extract text from a PDF, you'll need to
 use a library. There are many libraries available...
 ```
 
-### Set Appropriate Degrees of Freedom
+### 適切な自由度を設定する
 
-Match specificity to task fragility and variability.
+タスクの脆弱性と変動性に合わせて具体性を調整します。
 
-**High freedom** (multiple valid approaches):
+**高い自由度** (複数の有効なアプローチ):
 ```markdown
 ## Code review process
 
@@ -51,7 +51,7 @@ Match specificity to task fragility and variability.
 4. Verify adherence to project conventions
 ```
 
-**Medium freedom** (preferred pattern with variation):
+**中程度の自由度** (バリエーションを持つ推奨パターン):
 ```markdown
 ## Generate report
 
@@ -64,7 +64,7 @@ def generate_report(data, format="markdown"):
 ```
 ```
 
-**Low freedom** (fragile, exact sequence required):
+**低い自由度** (脆弱、正確な順序が必要):
 ```markdown
 ## Database migration
 
@@ -77,27 +77,27 @@ python scripts/migrate.py --verify --backup
 Do not modify the command or add flags.
 ```
 
-### Test With All Models
+### すべてのモデルでテストする
 
-Skills act as additions to models. Test with Haiku, Sonnet, and Opus.
+スキルはモデルへの追加として機能します。Haiku、Sonnet、Opusでテストしてください。
 
-- **Haiku**: Does the Skill provide enough guidance?
-- **Sonnet**: Is the Skill clear and efficient?
-- **Opus**: Does the Skill avoid over-explaining?
+- **Haiku**: スキルは十分なガイダンスを提供していますか?
+- **Sonnet**: スキルは明確で効率的ですか?
+- **Opus**: スキルは過度な説明を避けていますか?
 
-## Naming Conventions
+## 命名規則
 
-Use **gerund form** (verb + -ing) for Skill names:
+スキル名には**動名詞形式** (動詞 + -ing) を使用します:
 
-**Good:**
+**良い:**
 - `processing-pdfs`
 - `analyzing-spreadsheets`
 - `managing-databases`
 - `testing-code`
 - `writing-documentation`
 
-**Acceptable alternatives:**
-- Noun phrases: `pdf-processing`, `spreadsheet-analysis`
+**許容可能な代替案:**
+- 名詞句: `pdf-processing`, `spreadsheet-analysis`
 - Action-oriented: `process-pdfs`, `analyze-spreadsheets`
 
 **Avoid:**
@@ -122,16 +122,16 @@ description: Analyze Excel spreadsheets, create pivot tables, generate charts. U
 description: Generate descriptive commit messages by analyzing git diffs. Use when the user asks for help writing commit messages or reviewing staged changes.
 ```
 
-**Avoid vague descriptions:**
+**曖昧な説明を避ける:**
 ```yaml
-description: Helps with documents  # Too vague!
-description: Processes data       # Too generic!
-description: Does stuff with files # Useless!
+description: ドキュメントを支援  # 曖昧すぎる!
+description: データを処理       # 一般的すぎる!
+description: ファイルで何かをする # 無意味!
 ```
 
-## Progressive Disclosure Patterns
+## 漸進的開示パターン
 
-### Pattern 1: High-level guide with references
+### パターン1: 参照付き高レベルガイド
 
 ```markdown
 ---
@@ -139,9 +139,9 @@ name: pdf-processing
 description: Extracts text and tables from PDF files, fills forms, merges documents.
 ---
 
-# PDF Processing
+# PDF処理
 
-## Quick start
+## クイックスタート
 
 ```python
 import pdfplumber
@@ -149,14 +149,14 @@ with pdfplumber.open("file.pdf") as pdf:
     text = pdf.pages[0].extract_text()
 ```
 
-## Advanced features
+## 高度な機能
 
-**Form filling**: See [FORMS.md](FORMS.md)
-**API reference**: See [REFERENCE.md](REFERENCE.md)
-**Examples**: See [EXAMPLES.md](EXAMPLES.md)
+**フォーム入力**: [FORMS.md](FORMS.md)を参照
+**APIリファレンス**: [REFERENCE.md](REFERENCE.md)を参照
+**例**: [EXAMPLES.md](EXAMPLES.md)を参照
 ```
 
-### Pattern 2: Domain-specific organization
+### パターン2: ドメイン固有の組織
 
 ```
 bigquery-skill/
@@ -168,28 +168,28 @@ bigquery-skill/
     └── marketing.md (campaigns, attribution)
 ```
 
-### Pattern 3: Conditional details
+### パターン3: 条件付き詳細
 
 ```markdown
-# DOCX Processing
+# DOCX処理
 
-## Creating documents
+## ドキュメントの作成
 
-Use docx-js for new documents. See [DOCX-JS.md](DOCX-JS.md).
+新しいドキュメントにはdocx-jsを使用します。[DOCX-JS.md](DOCX-JS.md)を参照してください。
 
-## Editing documents
+## ドキュメントの編集
 
-For simple edits, modify the XML directly.
+簡単な編集の場合は、XMLを直接修正します。
 
-**For tracked changes**: See [REDLINING.md](REDLINING.md)
-**For OOXML details**: See [OOXML.md](OOXML.md)
+**変更追跡の場合**: [REDLINING.md](REDLINING.md)を参照
+**OOXMLの詳細の場合**: [OOXML.md](OOXML.md)を参照
 ```
 
-## Keep References One Level Deep
+## 参照を一階層の深さに保つ
 
-Claude may partially read files when they're referenced from other referenced files.
+Claudeは、他の参照ファイルから参照されるファイルを部分的にしか読み取らない場合があります。
 
-**Bad (too deep):**
+**悪い (深すぎる):**
 ```markdown
 # SKILL.md
 See [advanced.md](advanced.md)...

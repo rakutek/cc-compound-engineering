@@ -1,23 +1,23 @@
 <when_to_use_scripts>
-Even if Claude could write a script, pre-made scripts offer advantages:
-- More reliable than generated code
-- Save tokens (no need to include code in context)
-- Save time (no code generation required)
-- Ensure consistency across uses
+Claudeがスクリプトを書ける場合でも、事前に作成されたスクリプトには利点があります:
+- 生成されたコードより信頼性が高い
+- トークンを節約 (コンテキストにコードを含める必要がない)
+- 時間を節約 (コード生成不要)
+- 使用全体で一貫性を保証
 
 <execution_vs_reference>
-Make clear whether Claude should:
-- **Execute the script** (most common): "Run `analyze_form.py` to extract fields"
-- **Read it as reference** (for complex logic): "See `analyze_form.py` for the extraction algorithm"
+Claudeが何をすべきかを明確にします:
+- **スクリプトを実行する** (最も一般的): "フィールドを抽出するには`analyze_form.py`を実行します"
+- **参照として読む** (複雑なロジックの場合): "抽出アルゴリズムについては`analyze_form.py`を参照してください"
 
-For most utility scripts, execution is preferred.
+ほとんどのユーティリティスクリプトでは、実行が推奨されます。
 </execution_vs_reference>
 
 <how_scripts_work>
-When Claude executes a script via bash:
-1. Script code never enters context window
-2. Only script output consumes tokens
-3. Far more efficient than having Claude generate equivalent code
+Claudeがbash経由でスクリプトを実行するとき:
+1. スクリプトコードはコンテキストウィンドウに入りません
+2. スクリプト出力のみがトークンを消費します
+3. Claudeが同等のコードを生成するよりはるかに効率的です
 </how_scripts_work>
 </when_to_use_scripts>
 

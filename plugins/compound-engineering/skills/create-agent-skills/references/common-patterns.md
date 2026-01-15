@@ -1,14 +1,14 @@
 <overview>
-This reference documents common patterns for skill authoring, including templates, examples, terminology consistency, and anti-patterns. All patterns use pure XML structure.
+このリファレンスは、テンプレート、例、用語の一貫性、アンチパターンを含むスキル作成の一般的なパターンを文書化します。すべてのパターンは純粋XML構造を使用します。
 </overview>
 
 <template_pattern>
 <description>
-Provide templates for output format. Match the level of strictness to your needs.
+出力形式のテンプレートを提供します。必要性に応じて厳密さのレベルを合わせます。
 </description>
 
 <strict_requirements>
-Use when output format must be exact and consistent:
+出力形式が正確で一貫していなければならない場合に使用します:
 
 ```xml
 <report_structure>
@@ -32,11 +32,11 @@ ALWAYS use this exact template structure:
 </report_structure>
 ```
 
-**When to use**: Compliance reports, standardized formats, automated processing
+**いつ使用するか**: コンプライアンスレポート、標準化された形式、自動処理
 </strict_requirements>
 
 <flexible_guidance>
-Use when Claude should adapt the format based on context:
+Claudeがコンテキストに基づいて形式を適応させるべき場合に使用します:
 
 ```xml
 <report_structure>
@@ -55,27 +55,27 @@ Here is a sensible default format, but use your best judgment:
 [Tailor to the specific context]
 ```
 
-Adjust sections as needed for the specific analysis type.
+特定の分析タイプに合わせてセクションを調整してください。
 </report_structure>
 ```
 
-**When to use**: Exploratory analysis, context-dependent formatting, creative tasks
+**いつ使用するか**: 探索的分析、コンテキスト依存のフォーマット、創造的タスク
 </flexible_guidance>
 </template_pattern>
 
 <examples_pattern>
 <description>
-For skills where output quality depends on seeing examples, provide input/output pairs.
+出力品質が例を見ることに依存するスキルの場合、入力/出力ペアを提供します。
 </description>
 
 <commit_messages_example>
 ```xml
 <objective>
-Generate commit messages following conventional commit format.
+コンベンショナルコミット形式に従ってコミットメッセージを生成します。
 </objective>
 
 <commit_message_format>
-Generate commit messages following these examples:
+これらの例に従ってコミットメッセージを生成します:
 
 <example number="1">
 <input>Added user authentication with JWT tokens</input>

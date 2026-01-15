@@ -1,22 +1,22 @@
-# Using Templates in Skills
+# スキルでテンプレートを使用する
 
 <purpose>
-Templates are reusable output structures that Claude copies and fills in. They ensure consistent, high-quality outputs without regenerating structure each time.
+テンプレートは、Claudeがコピーして入力する再利用可能な出力構造です。毎回構造を再生成することなく、一貫した高品質な出力を保証します。
 </purpose>
 
 <when_to_use>
-Use templates when:
-- Output should have consistent structure across invocations
-- The structure matters more than creative generation
-- Filling placeholders is more reliable than blank-page generation
-- Users expect predictable, professional-looking outputs
+以下の場合にテンプレートを使用します:
+- 出力が呼び出し全体で一貫した構造を持つべき
+- 構造が創造的生成よりも重要
+- プレースホルダーを埋める方が白紙生成より信頼性が高い
+- ユーザーが予測可能でプロフェッショナルな見た目の出力を期待する
 
-Common template types:
-- **Plans** - Project plans, implementation plans, migration plans
-- **Specifications** - Technical specs, feature specs, API specs
-- **Documents** - Reports, proposals, summaries
-- **Configurations** - Config files, settings, environment setups
-- **Scaffolds** - File structures, boilerplate code
+一般的なテンプレートタイプ:
+- **計画** - プロジェクト計画、実装計画、マイグレーション計画
+- **仕様** - 技術仕様、機能仕様、API仕様
+- **ドキュメント** - レポート、提案、要約
+- **設定** - 設定ファイル、設定、環境セットアップ
+- **雛形** - ファイル構造、ボイラープレートコード
 </when_to_use>
 
 <template_structure>

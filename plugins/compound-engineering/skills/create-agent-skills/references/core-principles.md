@@ -1,94 +1,94 @@
 <overview>
-Core principles guide skill authoring decisions. These principles ensure skills are efficient, effective, and maintainable across different models and use cases.
+コアプリンシプルはスキル作成の決定を導きます。これらの原則は、スキルが異なるモデルやユースケースで効率的、効果的、かつ保守可能であることを保証します。
 </overview>
 
 <xml_structure_principle>
 <description>
-Skills use pure XML structure for consistent parsing, efficient token usage, and improved Claude performance.
+スキルは一貫した解析、効率的なトークン使用、および向上したClaudeパフォーマンスのために純粋XML構造を使用します。
 </description>
 
 <why_xml>
 <consistency>
-XML enforces consistent structure across all skills. All skills use the same tag names for the same purposes:
-- `<objective>` always defines what the skill does
-- `<quick_start>` always provides immediate guidance
-- `<success_criteria>` always defines completion
+XMLはすべてのスキルで一貫した構造を強制します。すべてのスキルは同じ目的に同じタグ名を使用します:
+- `<objective>`は常にスキルが何をするかを定義します
+- `<quick_start>`は常に即座のガイダンスを提供します
+- `<success_criteria>`は常に完了を定義します
 
-This consistency makes skills predictable and easier to maintain.
+この一貫性により、スキルは予測可能で保守が容易になります。
 </consistency>
 
 <parseability>
-XML provides unambiguous boundaries and semantic meaning. Claude can reliably:
-- Identify section boundaries (where content starts and ends)
-- Understand content purpose (what role each section plays)
-- Skip irrelevant sections (progressive disclosure)
-- Parse programmatically (validation tools can check structure)
+XMLは明確な境界と意味的な意味を提供します。Claudeは確実に:
+- セクションの境界を特定します (コンテンツがどこで始まり終わるか)
+- コンテンツの目的を理解します (各セクションが果たす役割)
+- 関連性のないセクションをスキップします (漸進的開示)
+- プログラムで解析します (検証ツールが構造をチェックできる)
 
-Markdown headings are just visual formatting. Claude must infer meaning from heading text, which is less reliable.
+Markdownの見出しは単なる視覚的フォーマットです。Claudeは見出しテキストから意味を推測する必要があり、これは信頼性が低いです。
 </parseability>
 
 <token_efficiency>
-XML tags are more efficient than markdown headings:
+XMLタグはmarkdownの見出しより効率的です:
 
-**Markdown headings**:
+**Markdownの見出し**:
 ```markdown
 ## Quick start
 ## Workflow
 ## Advanced features
 ## Success criteria
 ```
-Total: ~20 tokens, no semantic meaning to Claude
+合計: 約20トークン、Claudeにとって意味的な意味なし
 
-**XML tags**:
+**XMLタグ**:
 ```xml
 <quick_start>
 <workflow>
 <advanced_features>
 <success_criteria>
 ```
-Total: ~15 tokens, semantic meaning built-in
+合計: 約15トークン、意味的な意味が組み込まれている
 
-Savings compound across all skills in the ecosystem.
+節約はエコシステム全体のすべてのスキルで複合します。
 </token_efficiency>
 
 <claude_performance>
-Claude performs better with pure XML because:
-- Unambiguous section boundaries reduce parsing errors
-- Semantic tags convey intent directly (no inference needed)
-- Nested tags create clear hierarchies
-- Consistent structure across skills reduces cognitive load
-- Progressive disclosure works more reliably
+Claudeは純粋XMLでより良いパフォーマンスを発揮します:
+- 明確なセクション境界が解析エラーを減らす
+- 意味的なタグが意図を直接伝える (推測不要)
+- ネストされたタグが明確な階層を作成する
+- スキル全体で一貫した構造が認知負荷を減らす
+- 漸進的開示がより確実に機能する
 
-Pure XML structure is not just a style preference—it's a performance optimization.
+純粋XML構造は単なるスタイルの好みではありません—これはパフォーマンスの最適化です。
 </claude_performance>
 </why_xml>
 
 <critical_rule>
-**Remove ALL markdown headings (#, ##, ###) from skill body content.** Replace with semantic XML tags. Keep markdown formatting WITHIN content (bold, italic, lists, code blocks, links).
+**スキル本文コンテンツからすべてのMarkdown見出し (#, ##, ###) を削除してください。** 意味的なXMLタグに置き換えます。コンテンツ内のMarkdownフォーマット (太字、斜体、リスト、コードブロック、リンク) は保持します。
 </critical_rule>
 
 <required_tags>
-Every skill MUST have:
-- `<objective>` - What the skill does and why it matters
-- `<quick_start>` - Immediate, actionable guidance
-- `<success_criteria>` or `<when_successful>` - How to know it worked
+すべてのスキルに必須:
+- `<objective>` - スキルが何をし、なぜ重要か
+- `<quick_start>` - 即座の、実行可能なガイダンス
+- `<success_criteria>` または `<when_successful>` - 機能したかを知る方法
 
-See [use-xml-tags.md](use-xml-tags.md) for conditional tags and intelligence rules.
+条件付きタグとインテリジェンスルールについては、[use-xml-tags.md](use-xml-tags.md)を参照してください。
 </required_tags>
 </xml_structure_principle>
 
 <conciseness_principle>
 <description>
-The context window is shared. Your skill shares it with the system prompt, conversation history, other skills' metadata, and the actual request.
+コンテキストウィンドウは共有されます。あなたのスキルは、システムプロンプト、会話履歴、他のスキルのメタデータ、および実際のリクエストとコンテキストウィンドウを共有します。
 </description>
 
 <guidance>
-Only add context Claude doesn't already have. Challenge each piece of information:
-- "Does Claude really need this explanation?"
-- "Can I assume Claude knows this?"
-- "Does this paragraph justify its token cost?"
+Claudeがまだ持っていないコンテキストのみを追加します。各情報に問いかけます:
+- "Claudeは本当にこの説明が必要か?"
+- "Claudeがこれを知っていると仮定できるか?"
+- "この段落はそのトークンコストを正当化できるか?"
 
-Assume Claude is smart. Don't explain obvious concepts.
+Claudeが賢いと仮定します。明白な概念を説明しないでください。
 </guidance>
 
 <concise_example>

@@ -1,29 +1,29 @@
-# Workflow: Create Exhaustive Domain Expertise Skill
+# Workflow: 網羅的なドメイン専門スキルを作成する
 
 <objective>
-Build a comprehensive execution skill that does real work in a specific domain. Domain expertise skills are full-featured build skills with exhaustive domain knowledge in references, complete workflows for the full lifecycle (build → debug → optimize → ship), and can be both invoked directly by users AND loaded by other skills (like create-plans) for domain knowledge.
+特定のドメインで実際の作業を行う包括的な実行スキルを構築します。ドメイン専門スキルは、リファレンスに網羅的なドメイン知識を持ち、フルライフサイクル（ビルド → デバッグ → 最適化 → シップ）の完全なワークフローを持つフル機能のビルドスキルであり、ユーザーが直接呼び出すことも、他のスキル（create-plansなど）がドメイン知識を読み込むこともできます。
 </objective>
 
 <critical_distinction>
-**Regular skill:** "Do one specific task"
-**Domain expertise skill:** "Do EVERYTHING in this domain, with complete practitioner knowledge"
+**通常のスキル:** 「1つの特定のタスクを実行する」
+**ドメイン専門スキル:** 「このドメインですべてを実行する、完全な実践者の知識を持って」
 
-Examples:
-- `expertise/macos-apps` - Build macOS apps from scratch through shipping
-- `expertise/python-games` - Build complete Python games with full game dev lifecycle
-- `expertise/rust-systems` - Build Rust systems programs with exhaustive systems knowledge
-- `expertise/web-scraping` - Build scrapers, handle all edge cases, deploy at scale
+例:
+- `expertise/macos-apps` - ゼロからシップまでmacOSアプリを構築
+- `expertise/python-games` - フルゲーム開発ライフサイクルで完全なPythonゲームを構築
+- `expertise/rust-systems` - 網羅的なシステム知識でRustシステムプログラムを構築
+- `expertise/web-scraping` - スクレイパーを構築、すべてのエッジケースを処理、大規模にデプロイ
 
-Domain expertise skills:
-- ✅ Execute tasks (build, debug, optimize, ship)
-- ✅ Have comprehensive domain knowledge in references
-- ✅ Are invoked directly by users ("build a macOS app")
-- ✅ Can be loaded by other skills (create-plans reads references for planning)
-- ✅ Cover the FULL lifecycle, not just getting started
+ドメイン専門スキル:
+- ✅ タスクを実行する（ビルド、デバッグ、最適化、シップ）
+- ✅ リファレンスに包括的なドメイン知識を持つ
+- ✅ ユーザーが直接呼び出す（「macOSアプリを構築する」）
+- ✅ 他のスキルがドメイン知識を読み込むことができる（create-plansがプランニングのためにリファレンスを読む）
+- ✅ 入門だけでなく、完全なライフサイクルをカバーする
 </critical_distinction>
 
 <required_reading>
-**Read these reference files NOW:**
+**今すぐこれらのリファレンスファイルを読んでください:**
 1. references/recommended-structure.md
 2. references/core-principles.md
 3. references/use-xml-tags.md

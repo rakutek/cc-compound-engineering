@@ -1,12 +1,12 @@
-# Anthropic Official Skill Specification
+# Anthropic公式スキル仕様
 
 Source: [code.claude.com/docs/en/skills](https://code.claude.com/docs/en/skills)
 
-## SKILL.md File Structure
+## SKILL.mdファイル構造
 
-Every Skill requires a `SKILL.md` file with YAML frontmatter followed by Markdown instructions.
+すべてのスキルには、YAMLフロントマターとそれに続くMarkdown指示を含む`SKILL.md`ファイルが必要です。
 
-### Basic Format
+### 基本形式
 
 ```markdown
 ---
@@ -14,48 +14,48 @@ name: your-skill-name
 description: Brief description of what this Skill does and when to use it
 ---
 
-# Your Skill Name
+# あなたのスキル名
 
-## Instructions
-Provide clear, step-by-step guidance for Claude.
+## 指示
+Claudeに明確で段階的なガイダンスを提供します。
 
-## Examples
-Show concrete examples of using this Skill.
+## 例
+このスキルを使用する具体的な例を示します。
 ```
 
-## Required Frontmatter Fields
+## 必須フロントマターフィールド
 
-| Field | Required | Description |
+| フィールド | 必須 | 説明 |
 |-------|----------|-------------|
-| `name` | Yes | Skill name using lowercase letters, numbers, and hyphens only (max 64 characters). Should match the directory name. |
-| `description` | Yes | What the Skill does and when to use it (max 1024 characters). Claude uses this to decide when to apply the Skill. |
-| `allowed-tools` | No | Tools Claude can use without asking permission when this Skill is active. Example: `Read, Grep, Glob` |
-| `model` | No | Specific model to use when this Skill is active (e.g., `claude-sonnet-4-20250514`). Defaults to the conversation's model. |
+| `name` | はい | 小文字、数字、ハイフンのみを使用したスキル名 (最大64文字)。ディレクトリ名と一致する必要があります。 |
+| `description` | はい | スキルが何をし、いつ使用するか (最大1024文字)。Claudeはこれを使用してスキルを適用するタイミングを決定します。 |
+| `allowed-tools` | いいえ | このスキルがアクティブなときにClaudeが許可を求めずに使用できるツール。例: `Read, Grep, Glob` |
+| `model` | いいえ | このスキルがアクティブなときに使用する特定のモデル (例: `claude-sonnet-4-20250514`)。デフォルトは会話のモデルです。 |
 
-## Skill Locations & Priority
+## スキルの場所と優先順位
 
 ```
-Enterprise (highest priority) → Personal → Project → Plugin (lowest priority)
+企業 (最高優先) → 個人 → プロジェクト → プラグイン (最低優先)
 ```
 
-| Type | Path | Applies to |
-|------|------|-----------|
-| **Enterprise** | See managed settings | All users in organization |
-| **Personal** | `~/.claude/skills/` | You, across all projects |
-| **Project** | `.claude/skills/` | Anyone working in repository |
-| **Plugin** | Bundled with plugins | Anyone with plugin installed |
+| タイプ | パス | 適用先 |
+|------|------|----------|
+| **企業** | 管理設定を参照 | 組織内のすべてのユーザー |
+| **個人** | `~/.claude/skills/` | あなた、すべてのプロジェクトで |
+| **プロジェクト** | `.claude/skills/` | リポジトリで作業するすべての人 |
+| **プラグイン** | プラグインとバンドル | プラグインをインストールしたすべての人 |
 
-## How Skills Work
+## スキルの仕組み
 
-1. **Discovery**: Claude loads only name and description at startup
-2. **Activation**: When your request matches a Skill's description, Claude asks for confirmation
-3. **Execution**: Claude follows the Skill's instructions and loads referenced files
+1. **発見**: Claudeは起動時に名前と説明のみを読み込みます
+2. **アクティベーション**: あなたのリクエストがスキルの説明と一致すると、Claudeは確認を求めます
+3. **実行**: Claudeはスキルの指示に従い、参照されたファイルを読み込みます
 
-**Key Principle**: Skills are **model-invoked** — Claude automatically decides which Skills to use based on your request.
+**重要な原則**: スキルは**モデル呼び出し**です — Claudeはあなたのリクエストに基づいて使用するスキルを自動的に決定します。
 
-## Progressive Disclosure Pattern
+## 漸進的開示パターン
 
-Keep `SKILL.md` under 500 lines by linking to supporting files:
+サポートファイルへのリンクで`SKILL.md`を500行以下に保ちます:
 
 ```
 my-skill/

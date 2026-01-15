@@ -1,138 +1,138 @@
-# Workflow: Audit a Skill
+# Workflow: スキルを監査する
 
 <required_reading>
-**Read these reference files NOW:**
+**今すぐこれらのリファレンスファイルを読んでください:**
 1. references/recommended-structure.md
 2. references/skill-structure.md
 3. references/use-xml-tags.md
 </required_reading>
 
 <process>
-## Step 1: List Available Skills
+## ステップ1: 利用可能なスキルをリストする
 
-**DO NOT use AskUserQuestion** - there may be many skills.
+**AskUserQuestionを使用しないでください** - 多くのスキルがあるかもしれません。
 
-Enumerate skills in chat as numbered list:
+チャット内でスキルを番号付きリストとして列挙します:
 ```bash
 ls ~/.claude/skills/
 ```
 
-Present as:
+次のように表示します:
 ```
-Available skills:
+利用可能なスキル:
 1. create-agent-skills
 2. build-macos-apps
 3. manage-stripe
 ...
 ```
 
-Ask: "Which skill would you like to audit? (enter number or name)"
+「どのスキルを監査しますか？（番号または名前を入力してください）」と尋ねます。
 
-## Step 2: Read the Skill
+## ステップ2: スキルを読む
 
-After user selects, read the full skill structure:
+ユーザーが選択した後、完全なスキル構造を読みます:
 ```bash
-# Read main file
+# メインファイルを読む
 cat ~/.claude/skills/{skill-name}/SKILL.md
 
-# Check for workflows and references
+# ワークフローとリファレンスを確認
 ls ~/.claude/skills/{skill-name}/
 ls ~/.claude/skills/{skill-name}/workflows/ 2>/dev/null
 ls ~/.claude/skills/{skill-name}/references/ 2>/dev/null
 ```
 
-## Step 3: Run Audit Checklist
+## ステップ3: 監査チェックリストを実行する
 
-Evaluate against each criterion:
+各基準に対して評価します:
 
-### YAML Frontmatter
-- [ ] Has `name:` field (lowercase-with-hyphens)
-- [ ] Name matches directory name
-- [ ] Has `description:` field
-- [ ] Description says what it does AND when to use it
-- [ ] Description is third person ("Use when...")
+### YAMLフロントマター
+- [ ] `name:`フィールドがある（小文字-ハイフン区切り）
+- [ ] 名前がディレクトリ名と一致する
+- [ ] `description:`フィールドがある
+- [ ] 説明が何をするかといつ使用するかを説明している
+- [ ] 説明が三人称である（「...whenを使用する」）
 
-### Structure
-- [ ] SKILL.md under 500 lines
-- [ ] Pure XML structure (no markdown headings # in body)
-- [ ] All XML tags properly closed
-- [ ] Has required tags: objective OR essential_principles
-- [ ] Has success_criteria
+### 構造
+- [ ] SKILL.mdが500行未満
+- [ ] 純粋XML構造（本文にMarkdown見出し#がない）
+- [ ] すべてのXMLタグが適切に閉じられている
+- [ ] 必須タグがある: objective または essential_principles
+- [ ] success_criteriaがある
 
-### Router Pattern (if complex skill)
-- [ ] Essential principles inline in SKILL.md (not in separate file)
-- [ ] Has intake question
-- [ ] Has routing table
-- [ ] All referenced workflow files exist
-- [ ] All referenced reference files exist
+### ルーターパターン（複雑なスキルの場合）
+- [ ] 基本原則がSKILL.md内にインラインである（別ファイルにない）
+- [ ] インテーク質問がある
+- [ ] ルーティングテーブルがある
+- [ ] 参照されているすべてのワークフローファイルが存在する
+- [ ] 参照されているすべてのリファレンスファイルが存在する
 
-### Workflows (if present)
-- [ ] Each has required_reading section
-- [ ] Each has process section
-- [ ] Each has success_criteria section
-- [ ] Required reading references exist
+### ワークフロー（存在する場合）
+- [ ] 各ワークフローにrequired_readingセクションがある
+- [ ] 各ワークフローにprocessセクションがある
+- [ ] 各ワークフローにsuccess_criteriaセクションがある
+- [ ] required_readingの参照が存在する
 
-### Content Quality
-- [ ] Principles are actionable (not vague platitudes)
-- [ ] Steps are specific (not "do the thing")
-- [ ] Success criteria are verifiable
-- [ ] No redundant content across files
+### コンテンツ品質
+- [ ] 原則が実行可能である（曖昧な理念ではない）
+- [ ] ステップが具体的である（「それをやる」ではない）
+- [ ] 成功基準が検証可能である
+- [ ] ファイル間で冗長なコンテンツがない
 
-## Step 4: Generate Report
+## ステップ4: レポートを生成する
 
-Present findings as:
+所見を次のように表示します:
 
 ```
-## Audit Report: {skill-name}
+## 監査レポート: {skill-name}
 
-### ✅ Passing
-- [list passing items]
+### ✅ 合格
+- [合格項目のリスト]
 
-### ⚠️ Issues Found
-1. **[Issue name]**: [Description]
-   → Fix: [Specific action]
+### ⚠️ 発見された問題
+1. **[問題名]**: [説明]
+   → 修正: [具体的なアクション]
 
-2. **[Issue name]**: [Description]
-   → Fix: [Specific action]
+2. **[問題名]**: [説明]
+   → 修正: [具体的なアクション]
 
-### 📊 Score: X/Y criteria passing
+### 📊 スコア: X/Y 基準合格
 ```
 
-## Step 5: Offer Fixes
+## ステップ5: 修正を提案する
 
-If issues found, ask:
-"Would you like me to fix these issues?"
+問題が見つかった場合、尋ねます:
+「これらの問題を修正しますか？」
 
-Options:
-1. **Fix all** - Apply all recommended fixes
-2. **Fix one by one** - Review each fix before applying
-3. **Just the report** - No changes needed
+オプション:
+1. **すべて修正** - すべての推奨修正を適用
+2. **1つずつ修正** - 適用前に各修正をレビュー
+3. **レポートのみ** - 変更不要
 
-If fixing:
-- Make each change
-- Verify file validity after each change
-- Report what was fixed
+修正する場合:
+- 各変更を実施
+- 各変更後にファイルの有効性を確認
+- 何が修正されたかを報告
 </process>
 
 <audit_anti_patterns>
-## Common Anti-Patterns to Flag
+## フラグすべき一般的なアンチパターン
 
-**Skippable principles**: Essential principles in separate file instead of inline
-**Monolithic skill**: Single file over 500 lines
-**Mixed concerns**: Procedures and knowledge in same file
-**Vague steps**: "Handle the error appropriately"
-**Untestable criteria**: "User is satisfied"
-**Markdown headings in body**: Using # instead of XML tags
-**Missing routing**: Complex skill without intake/routing
-**Broken references**: Files mentioned but don't exist
-**Redundant content**: Same information in multiple places
+**スキップ可能な原則**: 基本原則がインラインではなく別ファイルにある
+**モノリシックなスキル**: 500行を超える単一ファイル
+**関心事の混合**: 手順と知識が同じファイルにある
+**曖昧なステップ**: 「エラーを適切に処理する」
+**テスト不可能な基準**: 「ユーザーが満足している」
+**本文内のMarkdown見出し**: XMLタグの代わりに#を使用
+**ルーティングなし**: インテーク/ルーティングがない複雑なスキル
+**壊れた参照**: 言及されているが存在しないファイル
+**冗長なコンテンツ**: 同じ情報が複数の場所にある
 </audit_anti_patterns>
 
 <success_criteria>
-Audit is complete when:
-- [ ] Skill fully read and analyzed
-- [ ] All checklist items evaluated
-- [ ] Report presented to user
-- [ ] Fixes applied (if requested)
-- [ ] User has clear picture of skill health
+監査は以下が完了したときに完了です:
+- [ ] スキルが完全に読み取られ、分析された
+- [ ] すべてのチェックリスト項目が評価された
+- [ ] レポートがユーザーに提示された
+- [ ] 修正が適用された（要求された場合）
+- [ ] ユーザーがスキルの状態を明確に把握している
 </success_criteria>

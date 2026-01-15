@@ -1,103 +1,103 @@
-# Workflow: Upgrade Skill to Router Pattern
+# Workflow: スキルをルーターパターンにアップグレードする
 
 <required_reading>
-**Read these reference files NOW:**
+**今すぐこれらのリファレンスファイルを読んでください:**
 1. references/recommended-structure.md
 2. references/skill-structure.md
 </required_reading>
 
 <process>
-## Step 1: Select the Skill
+## ステップ1: スキルを選択する
 
 ```bash
 ls ~/.claude/skills/
 ```
 
-Present numbered list, ask: "Which skill should be upgraded to the router pattern?"
+番号付きリストを表示し、「どのスキルをルーターパターンにアップグレードすべきですか？」と尋ねます。
 
-## Step 2: Verify It Needs Upgrading
+## ステップ2: アップグレードが必要かどうかを確認する
 
-Read the skill:
+スキルを読みます:
 ```bash
 cat ~/.claude/skills/{skill-name}/SKILL.md
 ls ~/.claude/skills/{skill-name}/
 ```
 
-**Already a router?** (has workflows/ and intake question)
-→ Tell user it's already using router pattern, offer to add workflows instead
+**すでにルーターか？**（workflows/とインテーク質問がある）
+→ すでにルーターパターンを使用していることを伝え、代わりにワークフローを追加することを提案
 
-**Simple skill that should stay simple?** (under 200 lines, single workflow)
-→ Explain that router pattern may be overkill, ask if they want to proceed anyway
+**シンプルなままであるべきシンプルなスキルか？**（200行未満、単一ワークフロー）
+→ ルーターパターンは過剰かもしれないことを説明し、とにかく続行したいか尋ねる
 
-**Good candidate for upgrade:**
-- Over 200 lines
-- Multiple distinct use cases
-- Essential principles that shouldn't be skipped
-- Growing complexity
+**アップグレードに適した候補:**
+- 200行超
+- 複数の異なるユースケース
+- スキップすべきではない基本原則
+- 複雑さが増している
 
-## Step 3: Identify Components
+## ステップ3: コンポーネントを特定する
 
-Analyze the current skill and identify:
+現在のスキルを分析して特定します:
 
-1. **Essential principles** - Rules that apply to ALL use cases
-2. **Distinct workflows** - Different things a user might want to do
-3. **Reusable knowledge** - Patterns, examples, technical details
+1. **基本原則** - すべてのユースケースに適用されるルール
+2. **異なるワークフロー** - ユーザーがやりたい異なること
+3. **再利用可能な知識** - パターン、例、技術詳細
 
-Present findings:
+所見を提示します:
 ```
-## Analysis
+## 分析
 
-**Essential principles I found:**
-- [Principle 1]
-- [Principle 2]
+**見つかった基本原則:**
+- [原則 1]
+- [原則 2]
 
-**Distinct workflows I identified:**
-- [Workflow A]: [description]
-- [Workflow B]: [description]
+**特定した異なるワークフロー:**
+- [ワークフロー A]: [説明]
+- [ワークフロー B]: [説明]
 
-**Knowledge that could be references:**
-- [Reference topic 1]
-- [Reference topic 2]
+**リファレンスにできる知識:**
+- [リファレンストピック 1]
+- [リファレンストピック 2]
 ```
 
-Ask: "Does this breakdown look right? Any adjustments?"
+「この分類は正しく見えますか？何か調整が必要ですか？」と尋ねます。
 
-## Step 4: Create Directory Structure
+## ステップ4: ディレクトリ構造を作成する
 
 ```bash
 mkdir -p ~/.claude/skills/{skill-name}/workflows
 mkdir -p ~/.claude/skills/{skill-name}/references
 ```
 
-## Step 5: Extract Workflows
+## ステップ5: ワークフローを抽出する
 
-For each identified workflow:
+特定された各ワークフローについて:
 
-1. Create `workflows/{workflow-name}.md`
-2. Add required_reading section (references it needs)
-3. Add process section (steps from original skill)
-4. Add success_criteria section
+1. `workflows/{workflow-name}.md`を作成
+2. required_readingセクションを追加（必要なリファレンス）
+3. processセクションを追加（元のスキルからのステップ）
+4. success_criteriaセクションを追加
 
-## Step 6: Extract References
+## ステップ6: リファレンスを抽出する
 
-For each identified reference topic:
+特定された各リファレンストピックについて:
 
-1. Create `references/{reference-name}.md`
-2. Move relevant content from original skill
-3. Structure with semantic XML tags
+1. `references/{reference-name}.md`を作成
+2. 元のスキルから関連コンテンツを移動
+3. セマンティックXMLタグで構造化
 
-## Step 7: Rewrite SKILL.md as Router
+## ステップ7: SKILL.mdをルーターとして書き直す
 
-Replace SKILL.md with router structure:
+SKILL.mdをルーター構造で置き換えます:
 
 ```markdown
 ---
 name: {skill-name}
-description: {existing description}
+description: {既存の説明}
 ---
 
 <essential_principles>
-[Extracted principles - inline, cannot be skipped]
+[抽出された原則 - インライン、スキップ不可]
 </essential_principles>
 
 <intake>

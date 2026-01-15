@@ -1,26 +1,26 @@
-# Using Scripts in Skills
+# スキルでスクリプトを使用する
 
 <purpose>
-Scripts are executable code that Claude runs as-is rather than regenerating each time. They ensure reliable, error-free execution of repeated operations.
+スクリプトは、Claudeが毎回再生成するのではなく、そのまま実行する実行可能コードです。繰り返し操作の信頼性が高く、エラーのない実行を保証します。
 </purpose>
 
 <when_to_use>
-Use scripts when:
-- The same code runs across multiple skill invocations
-- Operations are error-prone when rewritten from scratch
-- Complex shell commands or API interactions are involved
-- Consistency matters more than flexibility
+以下の場合にスクリプトを使用します:
+- 同じコードが複数のスキル呼び出しで実行される
+- ゼロから書き直すとエラーが発生しやすい操作
+- 複雑なシェルコマンドまたはAPI対話が関与する
+- 柔軟性より一貫性が重要
 
-Common script types:
-- **Deployment** - Deploy to Vercel, publish packages, push releases
-- **Setup** - Initialize projects, install dependencies, configure environments
-- **API calls** - Authenticated requests, webhook handlers, data fetches
-- **Data processing** - Transform files, batch operations, migrations
-- **Build processes** - Compile, bundle, test runners
+一般的なスクリプトタイプ:
+- **デプロイ** - Vercelへのデプロイ、パッケージの公開、リリースのプッシュ
+- **セットアップ** - プロジェクトの初期化、依存関係のインストール、環境の構成
+- **API呼び出し** - 認証されたリクエスト、Webhookハンドラー、データフェッチ
+- **データ処理** - ファイル変換、バッチ操作、マイグレーション
+- **ビルドプロセス** - コンパイル、バンドル、テストランナー
 </when_to_use>
 
 <script_structure>
-Scripts live in `scripts/` within the skill directory:
+スクリプトはスキルディレクトリ内の`scripts/`に配置します:
 
 ```
 skill-name/
@@ -34,12 +34,12 @@ skill-name/
     └── fetch-data.ts
 ```
 
-A well-structured script includes:
-1. Clear purpose comment at top
-2. Input validation
-3. Error handling
-4. Idempotent operations where possible
-5. Clear output/feedback
+適切に構造化されたスクリプトには以下が含まれます:
+1. 上部に明確な目的コメント
+2. 入力検証
+3. エラー処理
+4. 可能な限りべべ等性のある操作
+5. 明確な出力/フィードバック
 </script_structure>
 
 <script_example>
@@ -89,25 +89,25 @@ The workflow tells Claude WHEN to run the script. The script handles HOW the ope
 </workflow_integration>
 
 <best_practices>
-**Do:**
-- Make scripts idempotent (safe to run multiple times)
-- Include clear usage comments
-- Validate inputs before executing
-- Provide meaningful error messages
-- Use `set -euo pipefail` in bash scripts
+**すべきこと:**
+- スクリプトをべべ等性にする (複数回実行しても安全)
+- 明確な使用方法コメントを含める
+- 実行前に入力を検証する
+- 意味のあるエラーメッセージを提供する
+- bashスクリプトでは`set -euo pipefail`を使用する
 
-**Don't:**
-- Hardcode secrets or credentials (use environment variables)
-- Create scripts for one-off operations
-- Skip error handling
-- Make scripts do too many unrelated things
-- Forget to make scripts executable (`chmod +x`)
+**すべきでないこと:**
+- シークレットや認証情報をハードコードする (環境変数を使用)
+- 一回限りの操作用にスクリプトを作成する
+- エラー処理をスキップする
+- スクリプトに関連のないことを多数行わせる
+- スクリプトを実行可能にするのを忘れる (`chmod +x`)
 </best_practices>
 
 <security_considerations>
-- Never embed API keys, tokens, or secrets in scripts
-- Use environment variables for sensitive configuration
-- Validate and sanitize any user-provided inputs
-- Be cautious with scripts that delete or modify data
-- Consider adding `--dry-run` options for destructive operations
+- スクリプトにAPIキー、トークン、またはシークレットを埋め込まない
+- 機密設定には環境変数を使用する
+- ユーザー提供の入力を検証およびサニタイズする
+- データを削除または修正するスクリプトには注意する
+- 破壊的な操作には`--dry-run`オプションを追加することを検討する
 </security_considerations>

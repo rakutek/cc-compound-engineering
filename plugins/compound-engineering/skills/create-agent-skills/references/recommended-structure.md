@@ -1,16 +1,16 @@
-# Recommended Skill Structure
+# 推奨スキル構造
 
-The optimal structure for complex skills separates routing, workflows, and knowledge.
+複雑なスキルの最適な構造は、ルーティング、ワークフロー、および知識を分離します。
 
 <structure>
 ```
 skill-name/
-├── SKILL.md              # Router + essential principles (unavoidable)
-├── workflows/            # Step-by-step procedures (how)
+├── SKILL.md              # ルーター + 不可欠な原則 (不可避)
+├── workflows/            # 段階的な手順 (方法)
 │   ├── workflow-a.md
 │   ├── workflow-b.md
 │   └── ...
-└── references/           # Domain knowledge (what)
+└── references/           # ドメイン知識 (何か)
     ├── reference-a.md
     ├── reference-b.md
     └── ...
@@ -18,23 +18,23 @@ skill-name/
 </structure>
 
 <why_this_works>
-## Problems This Solves
+## これが解決する問題
 
-**Problem 1: Context gets skipped**
-When important principles are in a separate file, Claude may not read them.
-**Solution:** Put essential principles directly in SKILL.md. They load automatically.
+**問題1: コンテキストがスキップされる**
+重要な原則が別ファイルにあると、Claudeはそれらを読まない可能性があります。
+**解決策:** 不可欠な原則をSKILL.mdに直接置きます。自動的に読み込まれます。
 
-**Problem 2: Wrong context loaded**
-A "build" task loads debugging references. A "debug" task loads build references.
-**Solution:** Intake question determines intent → routes to specific workflow → workflow specifies which references to read.
+**問題2: 間違ったコンテキストが読み込まれる**
+"ビルド"タスクがデバッグ参照を読み込みます。"デバッグ"タスクがビルド参照を読み込みます。
+**解決策:** 受付質問が意図を決定 → 特定のワークフローにルーティング → ワークフローが読むべき参照を指定。
 
-**Problem 3: Monolithic skills are overwhelming**
-500+ lines of mixed content makes it hard to find relevant parts.
-**Solution:** Small router (SKILL.md) + focused workflows + reference library.
+**問題3: モノリシックなスキルは圧倒的**
+500以上の混合コンテンツ行は関連部分を見つけるのを難しくします。
+**解決策:** 小さなルーター (SKILL.md) + 焦点を絞ったワークフロー + 参照ライブラリ。
 
-**Problem 4: Procedures mixed with knowledge**
-"How to do X" mixed with "What X means" creates confusion.
-**Solution:** Workflows are procedures (steps). References are knowledge (patterns, examples).
+**問題4: 手順と知識が混在**
+"Xをする方法"と"Xが何を意味するか"が混在すると混乱が生じます。
+**解決策:** ワークフローは手順 (ステップ)。参照は知識 (パターン、例)。
 </why_this_works>
 
 <skill_md_template>

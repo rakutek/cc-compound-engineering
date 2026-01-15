@@ -1,120 +1,120 @@
-# Workflow: Add a Workflow to Existing Skill
+# Workflow: 既存のスキルにワークフローを追加する
 
 <required_reading>
-**Read these reference files NOW:**
+**今すぐこれらのリファレンスファイルを読んでください:**
 1. references/recommended-structure.md
 2. references/workflows-and-validation.md
 </required_reading>
 
 <process>
-## Step 1: Select the Skill
+## ステップ1: スキルを選択する
 
-**DO NOT use AskUserQuestion** - there may be many skills.
+**AskUserQuestionを使用しないでください** - 多くのスキルがあるかもしれません。
 
 ```bash
 ls ~/.claude/skills/
 ```
 
-Present numbered list, ask: "Which skill needs a new workflow?"
+番号付きリストを表示し、「どのスキルに新しいワークフローが必要ですか？」と尋ねます。
 
-## Step 2: Analyze Current Structure
+## ステップ2: 現在の構造を分析する
 
-Read the skill:
+スキルを読みます:
 ```bash
 cat ~/.claude/skills/{skill-name}/SKILL.md
 ls ~/.claude/skills/{skill-name}/workflows/ 2>/dev/null
 ```
 
-Determine:
-- **Simple skill?** → May need to upgrade to router pattern first
-- **Already has workflows/?** → Good, can add directly
-- **What workflows exist?** → Avoid duplication
+以下を判断します:
+- **シンプルなスキルか？** → 最初にルーターパターンにアップグレードする必要があるかもしれません
+- **すでにworkflows/があるか？** → 良好、直接追加できます
+- **どのようなワークフローが存在するか？** → 重複を避ける
 
-Report current structure to user.
+現在の構造をユーザーに報告します。
 
-## Step 3: Gather Workflow Requirements
+## ステップ3: ワークフロー要件を収集する
 
-Ask using AskUserQuestion or direct question:
-- What should this workflow do?
-- When would someone use it vs existing workflows?
-- What references would it need?
+AskUserQuestionまたは直接質問を使用して尋ねます:
+- このワークフローは何をすべきですか？
+- 既存のワークフローと比較して、いつ使用しますか？
+- どのようなリファレンスが必要ですか？
 
-## Step 4: Upgrade to Router Pattern (if needed)
+## ステップ4: ルーターパターンにアップグレードする（必要な場合）
 
-**If skill is currently simple (no workflows/):**
+**スキルが現在シンプルな場合（workflows/がない）:**
 
-Ask: "This skill needs to be upgraded to the router pattern first. Should I restructure it?"
+「このスキルは最初にルーターパターンにアップグレードする必要があります。再構造しますか？」と尋ねます。
 
-If yes:
-1. Create workflows/ directory
-2. Move existing process content to workflows/main.md
-3. Rewrite SKILL.md as router with intake + routing
-4. Verify structure works before proceeding
+「はい」の場合:
+1. workflows/ディレクトリを作成
+2. 既存のprocessコンテンツをworkflows/main.mdに移動
+3. SKILL.mdをインテーク + ルーティングを持つルーターとして書き直す
+4. 続行する前に構造が機能することを確認
 
-## Step 5: Create the Workflow File
+## ステップ5: ワークフローファイルを作成する
 
-Create `workflows/{workflow-name}.md`:
+`workflows/{workflow-name}.md`を作成します:
 
 ```markdown
-# Workflow: {Workflow Name}
+# Workflow: {ワークフロー名}
 
 <required_reading>
-**Read these reference files NOW:**
-1. references/{relevant-file}.md
+**今すぐこれらのリファレンスファイルを読んでください:**
+1. references/{関連ファイル}.md
 </required_reading>
 
 <process>
-## Step 1: {First Step}
-[What to do]
+## ステップ1: {最初のステップ}
+[何をするか]
 
-## Step 2: {Second Step}
-[What to do]
+## ステップ2: {二番目のステップ}
+[何をするか]
 
-## Step 3: {Third Step}
-[What to do]
+## ステップ3: {三番目のステップ}
+[何をするか]
 </process>
 
 <success_criteria>
-This workflow is complete when:
-- [ ] Criterion 1
-- [ ] Criterion 2
-- [ ] Criterion 3
+このワークフローは以下が完了したときに完了です:
+- [ ] 基準 1
+- [ ] 基準 2
+- [ ] 基準 3
 </success_criteria>
 ```
 
-## Step 6: Update SKILL.md
+## ステップ6: SKILL.mdを更新する
 
-Add the new workflow to:
+新しいワークフローを以下に追加します:
 
-1. **Intake question** - Add new option
-2. **Routing table** - Map option to workflow file
-3. **Workflows index** - Add to the list
+1. **インテーク質問** - 新しいオプションを追加
+2. **ルーティングテーブル** - オプションをワークフローファイルにマッピング
+3. **ワークフローインデックス** - リストに追加
 
-## Step 7: Create References (if needed)
+## ステップ7: リファレンスを作成する（必要な場合）
 
-If the workflow needs domain knowledge that doesn't exist:
-1. Create `references/{reference-name}.md`
-2. Add to reference_index in SKILL.md
-3. Reference it in the workflow's required_reading
+ワークフローが存在しないドメイン知識を必要とする場合:
+1. `references/{reference-name}.md`を作成
+2. SKILL.mdのreference_indexに追加
+3. ワークフローのrequired_readingで参照
 
-## Step 8: Test
+## ステップ8: テストする
 
-Invoke the skill:
-- Does the new option appear in intake?
-- Does selecting it route to the correct workflow?
-- Does the workflow load the right references?
-- Does the workflow execute correctly?
+スキルを呼び出します:
+- インテークに新しいオプションが表示されますか？
+- それを選択すると正しいワークフローにルーティングされますか？
+- ワークフローが正しいリファレンスを読み込みますか？
+- ワークフローが正しく実行されますか？
 
-Report results to user.
+結果をユーザーに報告します。
 </process>
 
 <success_criteria>
-Workflow addition is complete when:
-- [ ] Skill upgraded to router pattern (if needed)
-- [ ] Workflow file created with required_reading, process, success_criteria
-- [ ] SKILL.md intake updated with new option
-- [ ] SKILL.md routing updated
-- [ ] SKILL.md workflows_index updated
-- [ ] Any needed references created
-- [ ] Tested and working
+ワークフローの追加は以下が完了したときに完了です:
+- [ ] スキルがルーターパターンにアップグレードされた（必要な場合）
+- [ ] required_reading、process、success_criteriaを持つワークフローファイルが作成された
+- [ ] SKILL.mdのインテークが新しいオプションで更新された
+- [ ] SKILL.mdのルーティングが更新された
+- [ ] SKILL.mdのworkflows_indexが更新された
+- [ ] 必要なリファレンスが作成された
+- [ ] テスト済みで機能している
 </success_criteria>

@@ -1,204 +1,204 @@
-# Workflow: Verify Skill Content Accuracy
+# Workflow: スキルコンテンツの正確性を検証する
 
 <required_reading>
-**Read these reference files NOW:**
+**今すぐこれらのリファレンスファイルを読んでください:**
 1. references/skill-structure.md
 </required_reading>
 
 <purpose>
-Audit checks structure. **Verify checks truth.**
+監査は構造をチェックします。**検証は真実性をチェックします。**
 
-Skills contain claims about external things: APIs, CLI tools, frameworks, services. These change over time. This workflow checks if a skill's content is still accurate.
+スキルには外部のものについての主張が含まれています: API、CLIツール、フレームワーク、サービス。これらは時間の経過とともに変化します。このワークフローはスキルの内容がまだ正確かどうかを確認します。
 </purpose>
 
 <process>
-## Step 1: Select the Skill
+## ステップ1: スキルを選択する
 
 ```bash
 ls ~/.claude/skills/
 ```
 
-Present numbered list, ask: "Which skill should I verify for accuracy?"
+番号付きリストを表示し、「どのスキルの正確性を検証しますか?」と尋ねます。
 
-## Step 2: Read and Categorize
+## ステップ2: 読み取りと分類
 
-Read the entire skill (SKILL.md + workflows/ + references/):
+スキル全体を読みます（SKILL.md + workflows/ + references/）:
 ```bash
 cat ~/.claude/skills/{skill-name}/SKILL.md
 cat ~/.claude/skills/{skill-name}/workflows/*.md 2>/dev/null
 cat ~/.claude/skills/{skill-name}/references/*.md 2>/dev/null
 ```
 
-Categorize by primary dependency type:
+主な依存タイプで分類します:
 
-| Type | Examples | Verification Method |
+| タイプ | 例 | 検証方法 |
 |------|----------|---------------------|
-| **API/Service** | manage-stripe, manage-gohighlevel | Context7 + WebSearch |
-| **CLI Tools** | build-macos-apps (xcodebuild, swift) | Run commands |
-| **Framework** | build-iphone-apps (SwiftUI, UIKit) | Context7 for docs |
-| **Integration** | setup-stripe-payments | WebFetch + Context7 |
-| **Pure Process** | create-agent-skills | No external deps |
+| **API/サービス** | manage-stripe, manage-gohighlevel | Context7 + WebSearch |
+| **CLIツール** | build-macos-apps (xcodebuild, swift) | コマンド実行 |
+| **フレームワーク** | build-iphone-apps (SwiftUI, UIKit) | ドキュメント用Context7 |
+| **統合** | setup-stripe-payments | WebFetch + Context7 |
+| **純粋なプロセス** | create-agent-skills | 外部依存なし |
 
-Report: "This skill is primarily [type]-based. I'll verify using [method]."
+報告: 「このスキルは主に[タイプ]ベースです。[方法]を使用して検証します。」
 
-## Step 3: Extract Verifiable Claims
+## ステップ3: 検証可能な主張を抽出する
 
-Scan skill content and extract:
+スキルコンテンツをスキャンして抽出します:
 
-**CLI Tools mentioned:**
-- Tool names (xcodebuild, swift, npm, etc.)
-- Specific flags/options documented
-- Expected output patterns
+**言及されているCLIツール:**
+- ツール名 (xcodebuild, swift, npmなど)
+- ドキュメントされている特定のフラグ/オプション
+- 期待される出力パターン
 
-**API Endpoints:**
-- Service names (Stripe, Meta, etc.)
-- Specific endpoints documented
-- Authentication methods
-- SDK versions
+**APIエンドポイント:**
+- サービス名 (Stripe, Metaなど)
+- ドキュメントされている特定のエンドポイント
+- 認証方法
+- SDKバージョン
 
-**Framework Patterns:**
-- Framework names (SwiftUI, React, etc.)
-- Specific APIs/patterns documented
-- Version-specific features
+**フレームワークパターン:**
+- フレームワーク名 (SwiftUI, Reactなど)
+- ドキュメントされている特定のAPI/パターン
+- バージョン固有の機能
 
-**File Paths/Structures:**
-- Expected project structures
-- Config file locations
+**ファイルパス/構造:**
+- 期待されるプロジェクト構造
+- 設定ファイルの場所
 
-Present: "Found X verifiable claims to check."
+提示: 「チェックする検証可能なX個の項目が見つかりました。」
 
-## Step 4: Verify by Type
+## ステップ4: タイプ別に検証する
 
-### For CLI Tools
+### CLIツールの場合
 ```bash
-# Check tool exists
+# ツールが存在するか確認
 which {tool-name}
 
-# Check version
+# バージョンを確認
 {tool-name} --version
 
-# Verify documented flags work
+# ドキュメントされたフラグが機能するか検証
 {tool-name} --help | grep "{documented-flag}"
 ```
 
-### For API/Service Skills
-Use Context7 to fetch current documentation:
+### API/サービススキルの場合
+Context7を使用して現在のドキュメントを取得します:
 ```
 mcp__context7__resolve-library-id: {service-name}
 mcp__context7__get-library-docs: {library-id}, topic: {relevant-topic}
 ```
 
-Compare skill's documented patterns against current docs:
-- Are endpoints still valid?
-- Has authentication changed?
-- Are there deprecated methods being used?
+スキルのドキュメントされたパターンを現在のドキュメントと比較します:
+- エンドポイントはまだ有効ですか？
+- 認証が変更されましたか？
+- 非推奨のメソッドが使用されていますか？
 
-### For Framework Skills
-Use Context7:
+### フレームワークスキルの場合
+Context7を使用します:
 ```
 mcp__context7__resolve-library-id: {framework-name}
 mcp__context7__get-library-docs: {library-id}, topic: {specific-api}
 ```
 
-Check:
-- Are documented APIs still current?
-- Have patterns changed?
-- Are there newer recommended approaches?
+確認します:
+- ドキュメントされたAPIはまだ最新ですか？
+- パターンは変わりましたか？
+- より新しい推奨アプローチはありますか？
 
-### For Integration Skills
-WebSearch for recent changes:
+### 統合スキルの場合
+最近の変更についてWebSearchします:
 ```
-"[service name] API changes 2025"
-"[service name] breaking changes"
-"[service name] deprecated endpoints"
+"[サービス名] API changes 2025"
+"[サービス名] breaking changes"
+"[サービス名] deprecated endpoints"
 ```
 
-Then Context7 for current SDK patterns.
+その後、現在のSDKパターンについてContext7を使用します。
 
-### For Services with Status Pages
-WebFetch official docs/changelog if available.
+### ステータスページを持つサービスの場合
+利用可能な場合、公式ドキュメント/変更履歴をWebFetchします。
 
-## Step 5: Generate Freshness Report
+## ステップ5: 新鮮さレポートを生成する
 
-Present findings:
+所見を提示します:
 
 ```
-## Verification Report: {skill-name}
+## 検証レポート: {skill-name}
 
-### ✅ Verified Current
-- [Claim]: [Evidence it's still accurate]
+### ✅ 最新確認済み
+- [主張]: [まだ正確である証拠]
 
-### ⚠️ May Be Outdated
-- [Claim]: [What changed / newer info found]
-  → Current: [what docs now say]
+### ⚠️ 古くなっている可能性
+- [主張]: [変わったこと / 見つかった新しい情報]
+  → 現在: [ドキュメントが現在言っていること]
 
-### ❌ Broken / Invalid
-- [Claim]: [Why it's wrong]
-  → Fix: [What it should be]
+### ❌ 壊れている/無効
+- [主張]: [なぜ間違っているか]
+  → 修正: [何であるべきか]
 
-### ℹ️ Could Not Verify
-- [Claim]: [Why verification wasn't possible]
+### ℹ️ 検証できなかった
+- [主張]: [検証が不可能だった理由]
 
 ---
-**Overall Status:** [Fresh / Needs Updates / Significantly Stale]
-**Last Verified:** [Today's date]
+**総合ステータス:** [新鮮 / 更新が必要 / かなり古い]
+**最終検証:** [今日の日付]
 ```
 
-## Step 6: Offer Updates
+## ステップ6: 更新を提案する
 
-If issues found:
+問題が見つかった場合:
 
-"Found [N] items that need updating. Would you like me to:"
+「更新が必要な[N]個の項目が見つかりました。どうしますか:」
 
-1. **Update all** - Apply all corrections
-2. **Review each** - Show each change before applying
-3. **Just the report** - No changes
+1. **すべて更新** - すべての修正を適用
+2. **1つずつレビュー** - 適用前に各変更を表示
+3. **レポートのみ** - 変更なし
 
-If updating:
-- Make changes based on verified current information
-- Add verification date comment if appropriate
-- Report what was updated
+更新する場合:
+- 検証された現在の情報に基づいて変更を行う
+- 適切な場合、検証日コメントを追加
+- 更新された内容を報告
 
-## Step 7: Suggest Verification Schedule
+## ステップ7: 検証スケジュールを提案する
 
-Based on skill type, recommend:
+スキルタイプに基づいて推奨します:
 
-| Skill Type | Recommended Frequency |
+| スキルタイプ | 推奨頻度 |
 |------------|----------------------|
-| API/Service | Every 1-2 months |
-| Framework | Every 3-6 months |
-| CLI Tools | Every 6 months |
-| Pure Process | Annually |
+| API/サービス | 1-2ヶ月ごと |
+| フレームワーク | 3-6ヶ月ごと |
+| CLIツール | 6ヶ月ごと |
+| 純粋なプロセス | 年次 |
 
-"This skill should be re-verified in approximately [timeframe]."
+「このスキルはおよそ[時間枠]で再検証する必要があります。」
 </process>
 
 <verification_shortcuts>
-## Quick Verification Commands
+## 迅速検証コマンド
 
-**Check if CLI tool exists and get version:**
+**CLIツールが存在するか確認し、バージョンを取得:**
 ```bash
 which {tool} && {tool} --version
 ```
 
-**Context7 pattern for any library:**
+**任意のライブラリ用のContext7パターン:**
 ```
 1. resolve-library-id: "{library-name}"
 2. get-library-docs: "{id}", topic: "{specific-feature}"
 ```
 
-**WebSearch patterns:**
-- Breaking changes: "{service} breaking changes 2025"
-- Deprecations: "{service} deprecated API"
-- Current best practices: "{framework} best practices 2025"
+**WebSearchパターン:**
+- 破壊的変更: "{service} breaking changes 2025"
+- 非推奨: "{service} deprecated API"
+- 現在のベストプラクティス: "{framework} best practices 2025"
 </verification_shortcuts>
 
 <success_criteria>
-Verification is complete when:
-- [ ] Skill categorized by dependency type
-- [ ] Verifiable claims extracted
-- [ ] Each claim checked with appropriate method
-- [ ] Freshness report generated
-- [ ] Updates applied (if requested)
-- [ ] User knows when to re-verify
+検証は以下が完了したときに完了です:
+- [ ] 依存タイプ別にスキルが分類された
+- [ ] 検証可能な主張が抽出された
+- [ ] 各主張が適切な方法でチェックされた
+- [ ] 新鮮さレポートが生成された
+- [ ] 更新が適用された（要求された場合）
+- [ ] ユーザーがいつ再検証するかを知っている
 </success_criteria>

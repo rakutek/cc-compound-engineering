@@ -1,57 +1,57 @@
 <golden_rule>
-Show your skill to someone with minimal context and ask them to follow the instructions. If they're confused, Claude will likely be too.
+最小限のコンテキストでスキルを誰かに見せ、指示に従ってもらいましょう。もし彼らが混乱したら、Claudeもおそらく混乱します。
 </golden_rule>
 
 <overview>
-Clarity and directness are fundamental to effective skill authoring. Clear instructions reduce errors, improve execution quality, and minimize token waste.
+明確さと直接性は、効果的なスキル作成の基礎です。明確な指示はエラーを減らし、実行品質を向上させ、トークンの無駄を最小限に抑えます。
 </overview>
 
 <guidelines>
 <contextual_information>
-Give Claude contextual information that frames the task:
+Claudeにタスクのフレームとなる文脈情報を与えます:
 
-- What the task results will be used for
-- What audience the output is meant for
-- What workflow the task is part of
-- The end goal or what successful completion looks like
+- タスクの結果が何に使用されるか
+- 出力が誰を対象としているか
+- タスクがどのワークフローの一部であるか
+- 最終目標または成功した完了が何を意味するか
 
-Context helps Claude make better decisions and produce more appropriate outputs.
+コンテキストはClaudeがより良い判断を下し、より適切な出力を生成するのに役立ちます。
 
 <example>
 ```xml
 <context>
-This analysis will be presented to investors who value transparency and actionable insights. Focus on financial metrics and clear recommendations.
+この分析は、透明性と実行可能な洞察を重視する投資家に提示されます。財務指標と明確な推奨事項に焦点を当ててください。
 </context>
 ```
 </example>
 </contextual_information>
 
 <specificity>
-Be specific about what you want Claude to do. If you want code only and nothing else, say so.
+Claudeに何をしてほしいか具体的に伝えましょう。コードのみが必要で他に何もいらない場合は、そう言いましょう。
 
-**Vague**: "Help with the report"
-**Specific**: "Generate a markdown report with three sections: Executive Summary, Key Findings, Recommendations"
+**曖昧**: "レポートを手伝って"
+**具体的**: "Executive Summary、Key Findings、Recommendationsの3つのセクションを持つMarkdownレポートを生成してください"
 
-**Vague**: "Process the data"
-**Specific**: "Extract customer names and email addresses from the CSV file, removing duplicates, and save to JSON format"
+**曖昧**: "データを処理して"
+**具体的**: "CSVファイルから顧客名とメールアドレスを抽出し、重複を削除してJSON形式で保存してください"
 
-Specificity eliminates ambiguity and reduces iteration cycles.
+具体性は曖昧さを排除し、反復サイクルを減らします。
 </specificity>
 
 <sequential_steps>
-Provide instructions as sequential steps. Use numbered lists or bullet points.
+指示を順次ステップとして提供します。番号付きリストまたは箇条書きを使用します。
 
 ```xml
 <workflow>
-1. Extract data from source file
-2. Transform to target format
-3. Validate transformation
-4. Save to output file
-5. Verify output correctness
+1. ソースファイルからデータを抽出
+2. ターゲット形式に変換
+3. 変換を検証
+4. 出力ファイルに保存
+5. 出力の正確性を確認
 </workflow>
 ```
 
-Sequential steps create clear expectations and reduce the chance Claude skips important operations.
+順次ステップは明確な期待値を作成し、Claudeが重要な操作をスキップする可能性を減らします。
 </sequential_steps>
 </guidelines>
 
@@ -59,42 +59,42 @@ Sequential steps create clear expectations and reduce the chance Claude skips im
 <unclear_example>
 ```xml
 <quick_start>
-Please remove all personally identifiable information from these customer feedback messages: {{FEEDBACK_DATA}}
+これらの顧客フィードバックメッセージから個人を特定できる情報をすべて削除してください: {{FEEDBACK_DATA}}
 </quick_start>
 ```
 
-**Problems**:
-- What counts as PII?
-- What should replace PII?
-- What format should the output be?
-- What if no PII is found?
-- Should product names be redacted?
+**問題点**:
+- 何がPIIとしてカウントされるか?
+- PIIは何に置き換えるべきか?
+- 出力はどのフォーマットにすべきか?
+- PIIが見つからない場合はどうするか?
+- 製品名は削除すべきか?
 </unclear_example>
 
 <clear_example>
 ```xml
 <objective>
-Anonymize customer feedback for quarterly review presentation.
+四半期レビュープレゼンテーションのために顧客フィードバックを匿名化します。
 </objective>
 
 <quick_start>
 <instructions>
-1. Replace all customer names with "CUSTOMER_[ID]" (e.g., "Jane Doe" → "CUSTOMER_001")
-2. Replace email addresses with "EMAIL_[ID]@example.com"
-3. Redact phone numbers as "PHONE_[ID]"
-4. If a message mentions a specific product (e.g., "AcmeCloud"), leave it intact
-5. If no PII is found, copy the message verbatim
-6. Output only the processed messages, separated by "---"
+1. すべての顧客名を"CUSTOMER_[ID]"に置き換える (例: "Jane Doe" → "CUSTOMER_001")
+2. メールアドレスを"EMAIL_[ID]@example.com"に置き換える
+3. 電話番号を"PHONE_[ID]"として削除する
+4. メッセージが特定の製品(例: "AcmeCloud")に言及している場合は、そのままにします
+5. PIIが見つからない場合は、メッセージをそのままコピーします
+6. 処理されたメッセージのみを出力し、"---"で区切ります
 </instructions>
 
-Data to process: {{FEEDBACK_DATA}}
+処理するデータ: {{FEEDBACK_DATA}}
 </quick_start>
 
 <success_criteria>
-- All customer names replaced with IDs
-- All emails and phones redacted
-- Product names preserved
-- Output format matches specification
+- すべての顧客名がIDに置き換えられている
+- すべてのメールと電話が削除されている
+- 製品名が保持されている
+- 出力形式が仕様に一致している
 </success_criteria>
 ```
 
