@@ -5,6 +5,16 @@ compound-engineeringプラグインのすべての重要な変更は、このフ
 この形式は[Keep a Changelog](https://keepachangelog.com/en/1.0.0/)に基づいており、
 このプロジェクトは[セマンティックバージョニング](https://semver.org/spec/v2.0.0.html)に準拠しています。
 
+## [2.29.1] - 2026-01-20
+
+### 修正
+
+- **削除されたコマンド参照** - `resolve_todo_parallel`から`resolve`への参照を修正（commands/triage.md、commands/workflows/review.md、skills/file-todos/SKILL.md）
+- **削除されたスキルのキーワード** - plugin.jsonとmarketplace.jsonから`image-generation`キーワードを削除（gemini-imagegenスキルは2.27.0で削除済み）
+- **古いPlaywright参照** - commands/browser-test.mdのTodoファイル命名規約を`playwright`から`browser`に更新（agent-browser CLIに合わせる）
+
+---
+
 ## [2.29.0] - 2026-01-20
 
 ### 変更

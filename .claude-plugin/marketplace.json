@@ -12,14 +12,14 @@
     {
       "name": "compound-engineering",
       "description": "AI-powered development tools that get smarter with every use. Make each unit of engineering work easier than the last. Includes 21 specialized agents, 13 commands, and 9 skills.",
-      "version": "2.29.0",
+      "version": "2.29.1",
       "author": {
         "name": "Kieran Klaassen",
         "url": "https://github.com/kieranklaassen",
         "email": "kieran@every.to"
       },
       "homepage": "https://github.com/EveryInc/compound-engineering-plugin",
-      "tags": ["ai-powered", "compound-engineering", "workflow-automation", "code-review", "quality", "knowledge-management", "image-generation"],
+      "tags": ["ai-powered", "compound-engineering", "workflow-automation", "code-review", "quality", "knowledge-management"],
       "source": "./plugins/compound-engineering"
     }
   ]

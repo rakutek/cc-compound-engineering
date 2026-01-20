@@ -193,7 +193,7 @@ AskUserQuestionを使用：
    - 失敗したテストを再実行
 
 4. **「Todoを作成」の場合：**
-   - `{id}-pending-p1-playwright-{description}.md`を作成
+   - `{id}-pending-p1-browser-{description}.md`を作成
    - テストを続行
 
 5. **「スキップ」の場合：**
@@ -235,7 +235,7 @@ AskUserQuestionを使用：
 - `/dashboard` - [問題の説明]
 
 ### 作成されたTodo: [count]
-- `005-pending-p1-playwright-dashboard-error.md`
+- `005-pending-p1-browser-dashboard-error.md`
 
 ### 結果: [パス / 失敗 / 部分的]
 ```
