@@ -1,110 +1,208 @@
 ---
 name: agent-browser
-description: このスキルは、Webテスト、フォーム入力、スクリーンショット、データ抽出のためのブラウザ操作を自動化する際に使用されるべきです。
+description: Automates browser interactions for web testing, form filling, screenshots, and data extraction. Use when the user needs to navigate websites, interact with web pages, fill forms, take screenshots, test web applications, or extract information from web pages.
+allowed-tools: Bash(agent-browser:*)
 ---
 
-# agent-browserによるブラウザ自動化
+# Browser Automation with agent-browser
 
-## クイックスタート
+## Quick start
 
 ```bash
-agent-browser open <url>        # ページに移動
-agent-browser snapshot -i       # refを持つインタラクティブ要素を取得
-agent-browser click @e1         # refで要素をクリック
-agent-browser fill @e2 "text"   # refで入力フィールドに入力
-agent-browser close             # ブラウザを閉じる
+agent-browser open <url>        # Navigate to page
+agent-browser snapshot -i       # Get interactive elements with refs
+agent-browser click @e1         # Click element by ref
+agent-browser fill @e2 "text"   # Fill input by ref
+agent-browser close             # Close browser
 ```
 
-## コアワークフロー
+## Core workflow
 
-1. ナビゲート: `agent-browser open <url>`
-2. スナップショット: `agent-browser snapshot -i` (`@e1`、`@e2`のようなrefを持つ要素を返す)
-3. スナップショットからのrefを使用して操作
-4. ナビゲーションまたは重要なDOM変更後に再スナップショット
+1. Navigate: `agent-browser open <url>`
+2. Snapshot: `agent-browser snapshot -i` (returns elements with refs like `@e1`, `@e2`)
+3. Interact using refs from the snapshot
+4. Re-snapshot after navigation or significant DOM changes
 
-## コマンド
+## Commands
 
-### ナビゲーション
+### Navigation
 ```bash
-agent-browser open <url>      # URLに移動
-agent-browser back            # 戻る
-agent-browser forward         # 進む
-agent-browser reload          # ページを再読み込み
-agent-browser close           # ブラウザを閉じる
+agent-browser open <url>      # Navigate to URL
+agent-browser back            # Go back
+agent-browser forward         # Go forward
+agent-browser reload          # Reload page
+agent-browser close           # Close browser
 ```
 
-### スナップショット（ページ分析）
+### Snapshot (page analysis)
 ```bash
-agent-browser snapshot        # 完全なアクセシビリティツリー
-agent-browser snapshot -i     # インタラクティブ要素のみ（推奨）
-agent-browser snapshot -c     # コンパクト出力
-agent-browser snapshot -d 3   # 深さを3に制限
+agent-browser snapshot            # Full accessibility tree
+agent-browser snapshot -i         # Interactive elements only (recommended)
+agent-browser snapshot -c         # Compact output
+agent-browser snapshot -d 3       # Limit depth to 3
+agent-browser snapshot -s "#main" # Scope to CSS selector
 ```
 
-### 操作（スナップショットからの@refを使用）
+### Interactions (use @refs from snapshot)
 ```bash
-agent-browser click @e1           # クリック
-agent-browser dblclick @e1        # ダブルクリック
-agent-browser fill @e2 "text"     # クリアして入力
-agent-browser type @e2 "text"     # クリアせずに入力
-agent-browser press Enter         # キーを押す
-agent-browser press Control+a     # キーの組み合わせ
-agent-browser hover @e1           # ホバー
-agent-browser check @e1           # チェックボックスをチェック
-agent-browser uncheck @e1         # チェックボックスのチェックを外す
-agent-browser select @e1 "value"  # ドロップダウンを選択
-agent-browser scroll down 500     # ページをスクロール
-agent-browser scrollintoview @e1  # 要素を表示範囲にスクロール
+agent-browser click @e1           # Click
+agent-browser dblclick @e1        # Double-click
+agent-browser focus @e1           # Focus element
+agent-browser fill @e2 "text"     # Clear and type
+agent-browser type @e2 "text"     # Type without clearing
+agent-browser press Enter         # Press key
+agent-browser press Control+a     # Key combination
+agent-browser keydown Shift       # Hold key down
+agent-browser keyup Shift         # Release key
+agent-browser hover @e1           # Hover
+agent-browser check @e1           # Check checkbox
+agent-browser uncheck @e1         # Uncheck checkbox
+agent-browser select @e1 "value"  # Select dropdown
+agent-browser scroll down 500     # Scroll page
+agent-browser scrollintoview @e1  # Scroll element into view
+agent-browser drag @e1 @e2        # Drag and drop
+agent-browser upload @e1 file.pdf # Upload files
 ```
 
-### 情報の取得
+### Get information
 ```bash
-agent-browser get text @e1        # 要素のテキストを取得
-agent-browser get value @e1       # 入力値を取得
-agent-browser get title           # ページタイトルを取得
-agent-browser get url             # 現在のURLを取得
+agent-browser get text @e1        # Get element text
+agent-browser get html @e1        # Get innerHTML
+agent-browser get value @e1       # Get input value
+agent-browser get attr @e1 href   # Get attribute
+agent-browser get title           # Get page title
+agent-browser get url             # Get current URL
+agent-browser get count ".item"   # Count matching elements
+agent-browser get box @e1         # Get bounding box
 ```
 
-### スクリーンショット
+### Check state
 ```bash
-agent-browser screenshot          # スクリーンショットを標準出力
-agent-browser screenshot path.png # ファイルに保存
-agent-browser screenshot --full   # ページ全体
+agent-browser is visible @e1      # Check if visible
+agent-browser is enabled @e1      # Check if enabled
+agent-browser is checked @e1      # Check if checked
 ```
 
-### 待機
+### Screenshots & PDF
 ```bash
-agent-browser wait @e1                     # 要素を待機
-agent-browser wait 2000                    # ミリ秒待機
-agent-browser wait --text "Success"        # テキストを待機
-agent-browser wait --load networkidle      # ネットワークアイドルを待機
+agent-browser screenshot          # Screenshot to stdout
+agent-browser screenshot path.png # Save to file
+agent-browser screenshot --full   # Full page
+agent-browser pdf output.pdf      # Save as PDF
 ```
 
-### セマンティックロケーター（refの代替）
+### Video recording
+```bash
+agent-browser record start ./demo.webm    # Start recording (uses current URL + state)
+agent-browser click @e1                   # Perform actions
+agent-browser record stop                 # Stop and save video
+agent-browser record restart ./take2.webm # Stop current + start new recording
+```
+Recording creates a fresh context but preserves cookies/storage from your session. If no URL is provided, it automatically returns to your current page. For smooth demos, explore first, then start recording.
+
+### Wait
+```bash
+agent-browser wait @e1                     # Wait for element
+agent-browser wait 2000                    # Wait milliseconds
+agent-browser wait --text "Success"        # Wait for text
+agent-browser wait --url "**/dashboard"    # Wait for URL pattern
+agent-browser wait --load networkidle      # Wait for network idle
+agent-browser wait --fn "window.ready"     # Wait for JS condition
+```
+
+### Mouse control
+```bash
+agent-browser mouse move 100 200      # Move mouse
+agent-browser mouse down left         # Press button
+agent-browser mouse up left           # Release button
+agent-browser mouse wheel 100         # Scroll wheel
+```
+
+### Semantic locators (alternative to refs)
 ```bash
 agent-browser find role button click --name "Submit"
 agent-browser find text "Sign In" click
 agent-browser find label "Email" fill "user@test.com"
+agent-browser find first ".item" click
+agent-browser find nth 2 "a" text
 ```
 
-## 例：フォーム送信
+### Browser settings
+```bash
+agent-browser set viewport 1920 1080      # Set viewport size
+agent-browser set device "iPhone 14"      # Emulate device
+agent-browser set geo 37.7749 -122.4194   # Set geolocation
+agent-browser set offline on              # Toggle offline mode
+agent-browser set headers '{"X-Key":"v"}' # Extra HTTP headers
+agent-browser set credentials user pass   # HTTP basic auth
+agent-browser set media dark              # Emulate color scheme
+```
+
+### Cookies & Storage
+```bash
+agent-browser cookies                     # Get all cookies
+agent-browser cookies set name value      # Set cookie
+agent-browser cookies clear               # Clear cookies
+agent-browser storage local               # Get all localStorage
+agent-browser storage local key           # Get specific key
+agent-browser storage local set k v       # Set value
+agent-browser storage local clear         # Clear all
+```
+
+### Network
+```bash
+agent-browser network route <url>              # Intercept requests
+agent-browser network route <url> --abort      # Block requests
+agent-browser network route <url> --body '{}'  # Mock response
+agent-browser network unroute [url]            # Remove routes
+agent-browser network requests                 # View tracked requests
+agent-browser network requests --filter api    # Filter requests
+```
+
+### Tabs & Windows
+```bash
+agent-browser tab                 # List tabs
+agent-browser tab new [url]       # New tab
+agent-browser tab 2               # Switch to tab
+agent-browser tab close           # Close tab
+agent-browser window new          # New window
+```
+
+### Frames
+```bash
+agent-browser frame "#iframe"     # Switch to iframe
+agent-browser frame main          # Back to main frame
+```
+
+### Dialogs
+```bash
+agent-browser dialog accept [text]  # Accept dialog
+agent-browser dialog dismiss        # Dismiss dialog
+```
+
+### JavaScript
+```bash
+agent-browser eval "document.title"   # Run JavaScript
+```
+
+## Example: Form submission
 
 ```bash
 agent-browser open https://example.com/form
 agent-browser snapshot -i
-# 出力: textbox "Email" [ref=e1], textbox "Password" [ref=e2], button "Submit" [ref=e3]
+# Output shows: textbox "Email" [ref=e1], textbox "Password" [ref=e2], button "Submit" [ref=e3]
 
 agent-browser fill @e1 "user@example.com"
 agent-browser fill @e2 "password123"
 agent-browser click @e3
 agent-browser wait --load networkidle
-agent-browser snapshot -i  # 結果を確認
+agent-browser snapshot -i  # Check result
 ```
 
-## 例：保存された状態での認証
+## Example: Authentication with saved state
 
 ```bash
-# 一度ログイン
+# Login once
 agent-browser open https://app.example.com/login
 agent-browser snapshot -i
 agent-browser fill @e1 "username"
@@ -113,12 +211,12 @@ agent-browser click @e3
 agent-browser wait --url "**/dashboard"
 agent-browser state save auth.json
 
-# 後のセッション：保存された状態を読み込み
+# Later sessions: load saved state
 agent-browser state load auth.json
 agent-browser open https://app.example.com/dashboard
 ```
 
-## セッション（並列ブラウザ）
+## Sessions (parallel browsers)
 
 ```bash
 agent-browser --session test1 open site-a.com
@@ -126,18 +224,29 @@ agent-browser --session test2 open site-b.com
 agent-browser session list
 ```
 
-## JSON出力（パース用）
+## JSON output (for parsing)
 
-機械可読出力には`--json`を追加：
+Add `--json` for machine-readable output:
 ```bash
 agent-browser snapshot -i --json
 agent-browser get text @e1 --json
 ```
 
-## デバッグ
+## Debugging
 
 ```bash
-agent-browser open example.com --headed  # ブラウザウィンドウを表示
-agent-browser console                    # コンソールメッセージを表示
-agent-browser errors                     # ページエラーを表示
+agent-browser open example.com --headed              # Show browser window
+agent-browser console                                # View console messages
+agent-browser errors                                 # View page errors
+agent-browser record start ./debug.webm   # Record from current page
+agent-browser record stop                            # Save recording
+agent-browser open example.com --headed  # Show browser window
+agent-browser --cdp 9222 snapshot        # Connect via CDP
+agent-browser console                    # View console messages
+agent-browser console --clear            # Clear console
+agent-browser errors                     # View page errors
+agent-browser errors --clear             # Clear errors
+agent-browser highlight @e1              # Highlight element
+agent-browser trace start                # Start recording trace
+agent-browser trace stop trace.zip       # Stop and save trace
 ```
