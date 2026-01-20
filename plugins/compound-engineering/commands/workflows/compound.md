@@ -65,9 +65,8 @@ argument-hint: "[オプション: 修正に関する簡単なコンテキスト]
    検出された問題タイプに基づいて、適用可能なエージェントを自動的に呼び出し：
    - **performance_issue** → `performance-oracle`
    - **security_issue** → `security-sentinel`
-   - **database_issue** → `data-integrity-guardian`
-   - **test_failure** → `cora-test-reviewer`
-   - コードが多いイシュー → `kieran-rails-reviewer` + `code-simplicity-reviewer`
+   - **database_issue** → `production-data-guardian`
+   - コードが多いイシュー → `kieran-code-reviewer` + `code-simplicity-reviewer`
 
 ## キャプチャする内容
 
@@ -125,9 +124,8 @@ argument-hint: "[オプション: 修正に関する簡単なコンテキスト]
 
 専門エージェントレビュー（自動トリガー）:
   ✓ performance-oracle: クエリ最適化アプローチを検証
-  ✓ kieran-rails-reviewer: コード例がRails標準を満たす
+  ✓ kieran-code-reviewer: コード例が標準を満たす
   ✓ code-simplicity-reviewer: ソリューションが適切に最小限
-  ✓ every-style-editor: ドキュメントスタイルを検証
 
 作成されたファイル:
 - docs/solutions/performance-issues/n-plus-one-brief-generation.md
@@ -177,19 +175,17 @@ argument-hint: "[オプション: 修正に関する簡単なコンテキスト]
 問題タイプに基づいて、これらのエージェントがドキュメントを強化できます：
 
 ### コード品質 & レビュー
-- **kieran-rails-reviewer**: Railsのベストプラクティスに対してコード例をレビュー
+- **kieran-code-reviewer**: ベストプラクティスに対してコード例をレビュー
 - **code-simplicity-reviewer**: ソリューションコードが最小限で明確であることを確認
 - **pattern-recognition-specialist**: アンチパターンや繰り返しの問題を特定
 
 ### 特定ドメインエキスパート
 - **performance-oracle**: performance_issueカテゴリのソリューションを分析
 - **security-sentinel**: security_issueソリューションの脆弱性をレビュー
-- **cora-test-reviewer**: 予防戦略のテストケースを作成
-- **data-integrity-guardian**: database_issueのマイグレーションとクエリをレビュー
+- **production-data-guardian**: database_issueのマイグレーションとクエリをレビュー
 
 ### 強化 & ドキュメント
 - **best-practices-researcher**: 業界のベストプラクティスでソリューションを充実
-- **every-style-editor**: ドキュメントのスタイルと明確さをレビュー
 - **framework-docs-researcher**: Rails/gemドキュメントへの参照をリンク
 
 ### いつ呼び出すか

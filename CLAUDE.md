@@ -8,11 +8,6 @@
 every-marketplace/
 ├── .claude-plugin/
 │   └── marketplace.json          # マーケットプレイスカタログ（利用可能なプラグイン一覧）
-├── docs/                         # ドキュメントサイト（GitHub Pages）
-│   ├── index.html                # ランディングページ
-│   ├── css/                      # スタイルシート
-│   ├── js/                       # JavaScript
-│   └── pages/                    # リファレンスページ
 └── plugins/
     └── compound-engineering/   # 実際のプラグイン
         ├── .claude-plugin/
@@ -185,73 +180,6 @@ marketplace.jsonは公式Claude Codeの仕様に従います：
     "category": ["command1", "command2"]
   }
 }
-```
-
-## ドキュメントサイト
-
-ドキュメントサイトはリポジトリルートの`/docs`にあります（GitHub Pages用）。このサイトはプレーンなHTML/CSS/JS（Evil MartiansのLaunchKitテンプレートベース）で構築されており、表示にビルドステップは不要です。
-
-### ドキュメント構造
-
-```
-docs/
-├── index.html           # 統計と哲学を含むランディングページ
-├── css/
-│   ├── style.css        # メインスタイル（LaunchKitベース）
-│   └── docs.css         # ドキュメント固有のスタイル
-├── js/
-│   └── main.js          # インタラクティビティ（テーマ切り替え、モバイルナビ）
-└── pages/
-    ├── getting-started.html  # インストールとクイックスタート
-    ├── agents.html           # 全24エージェントリファレンス
-    ├── commands.html         # 全13コマンドリファレンス
-    ├── skills.html           # 全11スキルリファレンス
-    ├── mcp-servers.html      # MCPサーバーリファレンス
-    └── changelog.html        # バージョン履歴
-```
-
-### ドキュメントを最新に保つ
-
-**重要：** エージェント、コマンド、スキル、MCPサーバーに変更があった後は必ず実行：
-
-```bash
-claude /release-docs
-```
-
-このコマンドは：
-1. 現在のすべてのコンポーネントをカウント
-2. すべてのエージェント/コマンド/スキル/MCPファイルを読み込み
-3. すべてのリファレンスページを再生成
-4. ランディングページの統計を更新
-5. CHANGELOG.mdから変更履歴を更新
-6. すべてのファイルでカウントが一致することを検証
-
-### 手動更新
-
-手動でドキュメントを更新する必要がある場合：
-
-1. **ランディングページの統計** - `docs/index.html`の数字を更新：
-   ```html
-   <span class="stat-number">24</span>  <!-- エージェント -->
-   <span class="stat-number">13</span>  <!-- コマンド -->
-   ```
-
-2. **リファレンスページ** - `docs/pages/`の各ページはそのカテゴリのすべてのコンポーネントを文書化
-
-3. **変更履歴** - `docs/pages/changelog.html`は`CHANGELOG.md`をHTML形式でミラー
-
-### ローカルでドキュメントを表示
-
-ドキュメントは静的HTMLなので、直接表示できます：
-
-```bash
-# ブラウザで開く
-open docs/index.html
-
-# またはローカルサーバーを起動
-cd docs
-python -m http.server 8000
-# その後 http://localhost:8000 にアクセス
 ```
 
 ## 変更のテスト

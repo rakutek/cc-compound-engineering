@@ -109,4 +109,4 @@ description: このスキルは、非常に高い品質基準でコードをレ�
 - Pythonの場合：型ヒント、Pythonicパターン、PEP 8準拠を追加
 - TypeScriptの場合：型安全性、Reactパターン、モダンなES6+機能を追加
 
-言語固有のレビューアー（`kieran-rails-reviewer`、`kieran-python-reviewer`、`kieran-typescript-reviewer`）は、これらの原則に加えて言語固有のルールを自動的に適用します。
+`kieran-code-reviewer`エージェントは、これらの原則に加えて言語固有のルールを自動的に適用します。

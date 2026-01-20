@@ -120,7 +120,8 @@ argument-hint: "[プランファイル、仕様書、またはTodoファイル�
    bin/rails test
 
    # リンティングを実行（CLAUDE.mdに従って）
-   # originにプッシュする前にlinting-agentを使用
+   # originにプッシュする前にlintコマンドを使用
+   /workflows:lint
    ```
 
 2. **レビュアーエージェントの検討**（オプション）
@@ -128,16 +129,15 @@ argument-hint: "[プランファイル、仕様書、またはTodoファイル�
    複雑、リスクの高い、または大きな変更に使用：
 
    - **code-simplicity-reviewer**：不要な複雑さをチェック
-   - **kieran-rails-reviewer**：Rails規約を確認（Railsプロジェクト）
+   - **kieran-code-reviewer**：コーディング規約を確認
    - **performance-oracle**：パフォーマンス問題をチェック
    - **security-sentinel**：セキュリティ脆弱性をスキャン
-   - **cora-test-reviewer**：テスト品質をレビュー（CORAプロジェクト）
 
    Taskツールでレビュアーを並列実行：
 
    ```
    Task(code-simplicity-reviewer): "シンプルさのために変更をレビュー"
-   Task(kieran-rails-reviewer): "Rails規約をチェック"
+   Task(kieran-code-reviewer): "コーディング規約をチェック"
    ```
 
    発見事項をユーザーに提示し、重大な問題に対処。
@@ -186,14 +186,6 @@ argument-hint: "[プランファイル、仕様書、またはTodoファイル�
    - `browser_resize`でビューポートを設定（必要に応じてデスクトップまたはモバイル）
    - `browser_snapshot`でページ状態を確認
    - `browser_take_screenshot`で画像をキャプチャ
-
-   **ステップ3：imgupスキルでアップロード**
-   ```bash
-   skill: imgup
-   # 各スクリーンショットをアップロード：
-   imgup -h pixhost screenshot.png  # pixhostはAPIキー不要で動作
-   # 代替ホスト：catbox、imagebin、beeimg
-   ```
 
    **キャプチャする内容：**
    - **新しい画面**：新しいUIのスクリーンショット
@@ -278,7 +270,7 @@ PR作成前に確認：
 - [ ] すべての明確化の質問を聞いて回答を得た
 - [ ] すべてのTodoWriteタスクがcompletedにマーク
 - [ ] テストがパス（`bin/rails test`を実行）
-- [ ] リンティングがパス（linting-agentを使用）
+- [ ] リンティングがパス（`/workflows:lint`を使用）
 - [ ] コードが既存パターンに従っている
 - [ ] Figmaデザインが実装に一致（該当する場合）
 - [ ] Before/afterスクリーンショットをキャプチャしてアップロード（UI変更の場合）

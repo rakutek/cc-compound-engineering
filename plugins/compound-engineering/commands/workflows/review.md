@@ -54,19 +54,15 @@ argument-hint: "[PR番号、GitHub URL、ブランチ名、またはlatest]"
 
 これらのエージェントをすべてまたはほとんど同時に実行：
 
-1. Task kieran-rails-reviewer(PR content)
+1. Task kieran-code-reviewer(PR content)
 2. Task dhh-rails-reviewer(PR title)
-3. turboが使用されている場合：Task rails-turbo-expert(PR content)
-4. Task git-history-analyzer(PR content)
-5. Task dependency-detective(PR content)
-6. Task pattern-recognition-specialist(PR content)
-7. Task architecture-strategist(PR content)
-8. Task code-philosopher(PR content)
-9. Task security-sentinel(PR content)
-10. Task performance-oracle(PR content)
-11. Task devops-harmony-analyst(PR content)
-12. Task data-integrity-guardian(PR content)
-13. Task agent-native-reviewer(PR content) - 新機能がエージェントアクセス可能か確認
+3. Task git-history-analyzer(PR content)
+4. Task pattern-recognition-specialist(PR content)
+5. Task architecture-strategist(PR content)
+6. Task security-sentinel(PR content)
+7. Task performance-oracle(PR content)
+8. Task production-data-guardian(PR content)
+9. Task agent-native-reviewer(PR content) - 新機能がエージェントアクセス可能か確認
 
 </parallel_tasks>
 
@@ -78,19 +74,7 @@ argument-hint: "[PR番号、GitHub URL、ブランチ名、またはlatest]"
 
 **PRにデータベースマイグレーション（db/migrate/*.rbファイル）またはデータバックフィルが含まれる場合：**
 
-14. Task data-migration-expert(PR content) - IDマッピングが本番環境と一致することを検証、値の入れ替えをチェック、ロールバックの安全性を確認
-15. Task deployment-verification-agent(PR content) - SQL検証クエリを含むGo/No-Goデプロイメントチェックリストを作成
-
-**マイグレーションエージェントを実行するタイミング：**
-- PRに`db/migrate/*.rb`に一致するファイルが含まれる
-- PRがID、enum、またはマッピングを格納するカラムを変更
-- PRにデータバックフィルスクリプトまたはrakeタスクが含まれる
-- PRがデータの読み書き方法を変更（例：FKから文字列カラムへの変更）
-- PRタイトル/本文に言及：migration、backfill、data transformation、ID mapping
-
-**これらのエージェントがチェックする内容：**
-- `data-migration-expert`: ハードコードされたマッピングが本番環境の実態と一致することを確認（IDの入れ替えを防止）、孤立した関連付けをチェック、デュアルライトパターンを検証
-- `deployment-verification-agent`: 実行可能なpre/postデプロイチェックリスト、SQLクエリ、ロールバック手順、監視プランを作成
+production-data-guardianエージェントは既に並列エージェントとして実行されており、データの整合性とマイグレーションの安全性をチェックします。
 
 </conditional_agents>
 
@@ -367,7 +351,7 @@ Task() - 3番目の発見のTodoを作成
 
 ### 使用したレビューエージェント：
 
-- kieran-rails-reviewer
+- kieran-code-reviewer
 - security-sentinel
 - performance-oracle
 - architecture-strategist
