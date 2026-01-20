@@ -5,6 +5,25 @@ compound-engineeringプラグインのすべての重要な変更は、このフ
 この形式は[Keep a Changelog](https://keepachangelog.com/en/1.0.0/)に基づいており、
 このプロジェクトは[セマンティックバージョニング](https://semver.org/spec/v2.0.0.html)に準拠しています。
 
+## [2.29.0] - 2026-01-20
+
+### 変更
+
+- **スキル統合** - `skill-creator`と`create-agent-skills`を統合し、より包括的な`create-agent-skills`に集約（10個→9個）
+- **コマンド統合** - `resolve_parallel`と`resolve_todo_parallel`を自動検出機能付きの`resolve`コマンドに統合（10個→9個）
+- **データエージェント統合** - `data-integrity-guardian`、`data-migration-expert`、`deployment-verification-agent`を包括的な`production-data-guardian`に統合（3個→1個）
+- **言語別レビュアー統合** - `kieran-python-reviewer`、`kieran-rails-reviewer`、`kieran-typescript-reviewer`を言語自動検出機能付きの`kieran-code-reviewer`に統合（3個→1個）
+
+### 改善
+
+- コンポーネント総数が45個から39個に削減（13%削減）
+- 冗長性を排除し、保守性を向上
+- 統合エージェントとコマンドでより一貫した体験を提供
+- 言語検出により、開発者が適切なレビュアーを選ぶ必要がなくなる
+- データ関連のレビューが統合され、包括的なチェックを提供
+
+---
+
 ## [2.28.0] - 2026-01-20
 
 ### 削除

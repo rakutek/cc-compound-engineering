@@ -6,29 +6,25 @@
 
 | コンポーネント | 数 |
 |-----------|-------|
-| エージェント | 25 |
-| コマンド | 10 |
-| スキル | 10 |
+| エージェント | 21 |
+| コマンド | 13 |
+| スキル | 9 |
 | MCPサーバー | 1 |
 
 ## エージェント
 
 エージェントは発見しやすいようにカテゴリに整理されています。
 
-### レビュー (14)
+### レビュー (11)
 
 | エージェント | 説明 |
 |-------|-------------|
 | `agent-native-reviewer` | 機能がエージェントネイティブか確認（アクション + コンテキストの同等性） |
 | `architecture-strategist` | アーキテクチャ上の決定とコンプライアンスを分析 |
 | `code-simplicity-reviewer` | シンプルさとミニマリズムの最終チェック |
-| `data-integrity-guardian` | データベースマイグレーションとデータ整合性 |
-| `data-migration-expert` | IDマッピングが本番と一致するか検証、値の入れ替わりをチェック |
-| `deployment-verification-agent` | リスクのあるデータ変更のGo/No-Goデプロイチェックリストを作成 |
+| `production-data-guardian` | データベースマイグレーション、データ変換、デプロイ検証を統合管理 |
 | `dhh-rails-reviewer` | DHHの視点からのRailsレビュー |
-| `kieran-rails-reviewer` | 厳格な規約でRailsコードをレビュー |
-| `kieran-python-reviewer` | 厳格な規約でPythonコードをレビュー |
-| `kieran-typescript-reviewer` | 厳格な規約でTypeScriptコードをレビュー |
+| `kieran-code-reviewer` | Python/Rails/TypeScriptコードを自動検出して厳格な規約でレビュー |
 | `pattern-recognition-specialist` | コードのパターンとアンチパターンを分析 |
 | `performance-oracle` | パフォーマンス分析と最適化 |
 | `security-sentinel` | セキュリティ監査と脆弱性評価 |
@@ -81,11 +77,11 @@
 | `/changelog` | 最近のマージの変更履歴を作成 |
 | `/heal-skill` | スキルドキュメントの問題を修正 |
 | `/plan_review` | マルチエージェントで並行して計画をレビュー |
-| `/resolve_parallel` | TODOコメントを並行で解決 |
+| `/resolve` | TODOを並行で解決（コード内コメント・CLI TODO両対応、自動検出） |
 | `/resolve_pr_parallel` | PRコメントを並行で解決 |
-| `/resolve_todo_parallel` | todoを並行で解決 |
 | `/triage` | 問題をトリアージして優先順位付け |
 | `/browser-test` | PRに影響を受けたページでブラウザテストを実行 |
+| `/release-docs` | ドキュメントサイトを最新のコンポーネント情報で更新 |
 
 ## スキル
 
@@ -104,7 +100,6 @@
 | `dhh-ruby-style` | DHHの37signalsスタイルでRuby/Railsコードを作成 |
 | `frontend-design` | プロダクショングレードのフロントエンドインターフェースを作成 |
 | `kieran-code-quality` | すべてのKieranレビュアー用の言語に依存しないコード品質原則 |
-| `skill-creator` | 効果的なClaude Codeスキル作成のガイド |
 
 ### コンテンツ＆ワークフロー
 
