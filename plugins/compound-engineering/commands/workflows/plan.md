@@ -379,7 +379,7 @@ end
 **オプション：**
 1. **エディタでプランを開く** - レビュー用にプランファイルを開く
 2. **`/deepen-plan`を実行** - 並列リサーチエージェントで各セクションを強化（ベストプラクティス、パフォーマンス、UI）
-3. **`/plan_review`を実行** - レビュアーからフィードバックを取得（DHH、Kieran、Simplicity）
+3. **`/plan-review`を実行** - レビュアーからフィードバックを取得（DHH、Kieran、Simplicity）
 4. **`/workflows:work`を開始** - このプランのローカル実装を開始
 5. **リモートで`/workflows:work`を開始** - Web上のClaude Codeで実装開始（バックグラウンド実行に`&`を使用）
 6. **イシューを作成** - プロジェクトトラッカー（GitHub/Linear）にイシューを作成
@@ -388,7 +388,7 @@ end
 選択に基づいて：
 - **エディタでプランを開く** → `open plans/<issue_title>.md`を実行してユーザーのデフォルトエディタでファイルを開く
 - **`/deepen-plan`** → プランファイルパスで/deepen-planコマンドを呼び出してリサーチで強化
-- **`/plan_review`** → プランファイルパスで/plan_reviewコマンドを呼び出す
+- **`/plan-review`** → プランファイルパスで/plan-reviewコマンドを呼び出す
 - **`/workflows:work`** → プランファイルパスで/workflows:workコマンドを呼び出す
 - **リモートで`/workflows:work`** → `/workflows:work plans/<issue_title>.md &`を実行してClaude Code webでバックグラウンド作業を開始
 - **イシューを作成** → 以下の「イシュー作成」セクションを参照
@@ -397,7 +397,7 @@ end
 
 **注意：** ultrathinkが有効な状態で`/workflows:plan`を実行する場合、最大の深さと根拠のためにプラン作成後に自動的に`/deepen-plan`を実行。
 
-ユーザーが`/workflows:work`または`/plan_review`を選択するまで、簡略化またはその他の変更後にオプションに戻る。
+ユーザーが`/workflows:work`または`/plan-review`を選択するまで、簡略化またはその他の変更後にオプションに戻る。
 
 ## イシュー作成
 
@@ -426,6 +426,6 @@ end
 
 5. **作成後：**
    - イシューURLを表示
-   - `/workflows:work`または`/plan_review`に進むか質問
+   - `/workflows:work`または`/plan-review`に進むか質問
 
 コードは書かないでください！リサーチとプランの作成のみ。

@@ -1,5 +1,5 @@
 ---
-name: resolve_pr_parallel
+name: resolve-pr-parallel
 description: 並列処理を使用してすべてのPRコメントを解決する
 argument-hint: "[オプション: PR番号または現在のPR]"
 ---

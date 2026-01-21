@@ -5,6 +5,30 @@ compound-engineeringプラグインのすべての重要な変更は、このフ
 この形式は[Keep a Changelog](https://keepachangelog.com/en/1.0.0/)に基づいており、
 このプロジェクトは[セマンティックバージョニング](https://semver.org/spec/v2.0.0.html)に準拠しています。
 
+## [2.29.4] - 2026-01-21
+
+### 修正
+
+- **コマンド命名規則** - コマンドファイル名をハイフン区切りに統一（アンダースコアから変更）
+  - `plan_review.md` → `plan-review.md`（`/plan-review`コマンド）
+  - `resolve_pr_parallel.md` → `resolve-pr-parallel.md`（`/resolve-pr-parallel`コマンド）
+  - すべての参照を新しい命名規則に更新（README.md、deepen-plan.md、workflows/plan.md）
+
+### 削除
+
+- **未使用のリファレンスファイル** - create-agent-skillsスキルから4つの未参照ファイルを削除
+  - `references/be-clear-and-direct.md`
+  - `references/api-security.md`
+  - `references/common-patterns.md`
+  - `references/executable-code.md`
+
+### 改善
+
+- コードベース全体で一貫した命名規則（すべてのコマンドがハイフン区切り）
+- 保守性の向上（未使用ファイルの削除）
+
+---
+
 ## [2.29.3] - 2026-01-21
 
 ### 変更

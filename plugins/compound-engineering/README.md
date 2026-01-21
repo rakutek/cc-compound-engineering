@@ -74,9 +74,9 @@
 | `/deepen-plan` | 各セクションに並行リサーチエージェントで計画を強化 |
 | `/changelog` | 最近のマージの変更履歴を作成 |
 | `/heal-skill` | スキルドキュメントの問題を修正 |
-| `/plan_review` | マルチエージェントで並行して計画をレビュー |
+| `/plan-review` | マルチエージェントで並行して計画をレビュー |
 | `/resolve` | TODOを並行で解決（コード内コメント・CLI TODO両対応、自動検出） |
-| `/resolve_pr_parallel` | PRコメントを並行で解決 |
+| `/resolve-pr-parallel` | PRコメントを並行で解決 |
 | `/triage` | 問題をトリアージして優先順位付け |
 | `/browser-test` | PRに影響を受けたページでブラウザテストを実行 |
 | `/release-docs` | ドキュメントサイトを最新のコンポーネント情報で更新 |
