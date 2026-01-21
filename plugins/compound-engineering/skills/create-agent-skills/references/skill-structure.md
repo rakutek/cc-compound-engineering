@@ -28,8 +28,6 @@ Add based on skill complexity and domain requirements:
 - **`<testing>`** - Testing workflows
 - **`<common_patterns>`** - Code examples and recipes
 - **`<reference_guides>` or `<detailed_references>`** - Links to reference files
-
-See [use-xml-tags.md](use-xml-tags.md) for detailed guidance on each tag.
 </conditional_tags>
 
 <tag_selection_intelligence>

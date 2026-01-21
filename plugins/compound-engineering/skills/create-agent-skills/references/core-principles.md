@@ -72,8 +72,6 @@ Claudeは純粋XMLでより良いパフォーマンスを発揮します:
 - `<objective>` - スキルが何をし、なぜ重要か
 - `<quick_start>` - 即座の、実行可能なガイダンス
 - `<success_criteria>` または `<when_successful>` - 機能したかを知る方法
-
-条件付きタグとインテリジェンスルールについては、[use-xml-tags.md](use-xml-tags.md)を参照してください。
 </required_tags>
 </xml_structure_principle>
 

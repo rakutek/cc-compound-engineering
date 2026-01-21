@@ -31,8 +31,7 @@ agents/
 ├── review/     # コードレビューエージェント
 ├── research/   # リサーチ・分析エージェント
 ├── design/     # デザイン・UIエージェント
-├── workflow/   # ワークフロー自動化エージェント
-└── docs/       # ドキュメントエージェント
+└── workflow/   # ワークフロー自動化エージェント
 
 commands/
 ├── workflows/  # コアワークフローコマンド（workflows:plan、workflows:reviewなど）

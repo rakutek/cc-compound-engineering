@@ -5,7 +5,6 @@
 1. references/recommended-structure.md
 2. references/skill-structure.md
 3. references/core-principles.md
-4. references/use-xml-tags.md
 </required_reading>
 
 <process>

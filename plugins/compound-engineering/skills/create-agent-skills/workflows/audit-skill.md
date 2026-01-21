@@ -4,7 +4,6 @@
 **今すぐこれらのリファレンスファイルを読んでください:**
 1. references/recommended-structure.md
 2. references/skill-structure.md
-3. references/use-xml-tags.md
 </required_reading>
 
 <process>

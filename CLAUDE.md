@@ -11,11 +11,10 @@ every-marketplace/
 └── plugins/
     └── compound-engineering/   # 実際のプラグイン
         ├── .claude-plugin/
-        │   └── plugin.json        # プラグインメタデータ
-        ├── agents/                # 24の専門AIエージェント
+        │   └── plugin.json        # プラグインメタデータ（1つのMCPサーバーcontext7を含む）
+        ├── agents/                # 19の専門AIエージェント
         ├── commands/              # 13のスラッシュコマンド
-        ├── skills/                # 11のスキル
-        ├── mcp-servers/           # 2つのMCPサーバー（playwright、context7）
+        ├── skills/                # 9のスキル
         ├── README.md              # プラグインドキュメント
         └── CHANGELOG.md           # バージョン履歴
 ```
@@ -201,7 +200,7 @@ marketplace.jsonは公式Claude Codeの仕様に従います：
 3. エージェントとコマンドをテスト：
    ```bash
    claude /review
-   claude agent kieran-rails-reviewer "test message"
+   claude agent kieran-code-reviewer "test message"
    ```
 
 ### JSONを検証
@@ -296,6 +295,8 @@ _このセクションでは、このリポジトリで作業しながら得た�
 プラグインに最初のスキルを追加し、コンポーネントカウントが間違っていることを発見（15エージェントと記載していたが、実際には17だった）。今後これを防ぐための包括的なチェックリストを作成。
 
 **学び：** 説明を更新する前に必ず実際のファイルをカウントすること。カウントは複数の場所（plugin.json、marketplace.json、README.md）に表示され、すべて一致する必要がある。上記のチェックリストの確認コマンドを使用すること。
+
+**注：** gemini-imagegenスキルは後にプラグインから削除されました。
 
 ### 2024-10-09: marketplace.jsonを公式仕様に合わせて簡素化
 

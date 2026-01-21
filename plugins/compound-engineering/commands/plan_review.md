@@ -4,4 +4,4 @@ description: 複数の専門エージェントにプランを並列でレビュ�
 argument-hint: "[プランファイルパスまたはプランコンテンツ]"
 ---
 
-@agent-dhh-rails-reviewer @agent-kieran-code-reviewer @agent-code-simplicity-reviewerにこのプランを並列でレビューさせます。
+@agent-dhh-rails-reviewer @agent-kieran-code-reviewerにこのプランを並列でレビューさせます。

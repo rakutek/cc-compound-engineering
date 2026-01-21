@@ -66,7 +66,7 @@ argument-hint: "[オプション: 修正に関する簡単なコンテキスト]
    - **performance_issue** → `performance-oracle`
    - **security_issue** → `security-sentinel`
    - **database_issue** → `production-data-guardian`
-   - コードが多いイシュー → `kieran-code-reviewer` + `code-simplicity-reviewer`
+   - コードが多いイシュー → `kieran-code-reviewer`
 
 ## キャプチャする内容
 
@@ -125,7 +125,6 @@ argument-hint: "[オプション: 修正に関する簡単なコンテキスト]
 専門エージェントレビュー（自動トリガー）:
   ✓ performance-oracle: クエリ最適化アプローチを検証
   ✓ kieran-code-reviewer: コード例が標準を満たす
-  ✓ code-simplicity-reviewer: ソリューションが適切に最小限
 
 作成されたファイル:
 - docs/solutions/performance-issues/n-plus-one-brief-generation.md
@@ -176,7 +175,6 @@ argument-hint: "[オプション: 修正に関する簡単なコンテキスト]
 
 ### コード品質 & レビュー
 - **kieran-code-reviewer**: ベストプラクティスに対してコード例をレビュー
-- **code-simplicity-reviewer**: ソリューションコードが最小限で明確であることを確認
 - **pattern-recognition-specialist**: アンチパターンや繰り返しの問題を特定
 
 ### 特定ドメインエキスパート
@@ -194,5 +192,4 @@ argument-hint: "[オプション: 修正に関する簡単なコンテキスト]
 
 ## 関連コマンド
 
-- `/research [topic]` - 深い調査（docs/solutions/でパターンを検索）
 - `/workflows:plan` - 計画ワークフロー（文書化されたソリューションを参照）

@@ -304,7 +304,7 @@ argument-hint: "[発見事項リストまたはソースタイプ]"
 ```markdown
 次に何をしますか？
 
-1. /resolve_todo_parallelを実行してTodoを解決
+1. /resolveを実行してTodoを解決
 2. Todoをコミット
 3. 何もしない、休憩
 ```

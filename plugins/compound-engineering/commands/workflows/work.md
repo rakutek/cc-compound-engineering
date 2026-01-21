@@ -120,15 +120,14 @@ argument-hint: "[プランファイル、仕様書、またはTodoファイル�
    bin/rails test
 
    # リンティングを実行（CLAUDE.mdに従って）
-   # originにプッシュする前にlintコマンドを使用
-   /workflows:lint
+   # originにプッシュする前にlintエージェントを使用
+   Task lint: "リンティングとコード品質チェックを実行"
    ```
 
 2. **レビュアーエージェントの検討**（オプション）
 
    複雑、リスクの高い、または大きな変更に使用：
 
-   - **code-simplicity-reviewer**：不要な複雑さをチェック
    - **kieran-code-reviewer**：コーディング規約を確認
    - **performance-oracle**：パフォーマンス問題をチェック
    - **security-sentinel**：セキュリティ脆弱性をスキャン
@@ -136,7 +135,6 @@ argument-hint: "[プランファイル、仕様書、またはTodoファイル�
    Taskツールでレビュアーを並列実行：
 
    ```
-   Task(code-simplicity-reviewer): "シンプルさのために変更をレビュー"
    Task(kieran-code-reviewer): "コーディング規約をチェック"
    ```
 
@@ -270,7 +268,7 @@ PR作成前に確認：
 - [ ] すべての明確化の質問を聞いて回答を得た
 - [ ] すべてのTodoWriteタスクがcompletedにマーク
 - [ ] テストがパス（`bin/rails test`を実行）
-- [ ] リンティングがパス（`/workflows:lint`を使用）
+- [ ] リンティングがパス（lintエージェントを使用）
 - [ ] コードが既存パターンに従っている
 - [ ] Figmaデザインが実装に一致（該当する場合）
 - [ ] Before/afterスクリーンショットをキャプチャしてアップロード（UI変更の場合）

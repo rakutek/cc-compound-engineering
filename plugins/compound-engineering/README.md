@@ -6,7 +6,7 @@
 
 | コンポーネント | 数 |
 |-----------|-------|
-| エージェント | 21 |
+| エージェント | 19 |
 | コマンド | 13 |
 | スキル | 9 |
 | MCPサーバー | 1 |
@@ -15,16 +15,15 @@
 
 エージェントは発見しやすいようにカテゴリに整理されています。
 
-### レビュー (11)
+### レビュー (9)
 
 | エージェント | 説明 |
 |-------|-------------|
 | `agent-native-reviewer` | 機能がエージェントネイティブか確認（アクション + コンテキストの同等性） |
 | `architecture-strategist` | アーキテクチャ上の決定とコンプライアンスを分析 |
-| `code-simplicity-reviewer` | シンプルさとミニマリズムの最終チェック |
 | `production-data-guardian` | データベースマイグレーション、データ変換、デプロイ検証を統合管理 |
 | `dhh-rails-reviewer` | DHHの視点からのRailsレビュー |
-| `kieran-code-reviewer` | Python/Rails/TypeScriptコードを自動検出して厳格な規約でレビュー |
+| `kieran-code-reviewer` | Python/Rails/TypeScriptコードを自動検出して厳格な規約でレビュー（シンプルさとYAGNI原則を含む） |
 | `pattern-recognition-specialist` | コードのパターンとアンチパターンを分析 |
 | `performance-oracle` | パフォーマンス分析と最適化 |
 | `security-sentinel` | セキュリティ監査と脆弱性評価 |
@@ -39,13 +38,12 @@
 | `git-history-analyzer` | Git履歴とコードの進化を分析 |
 | `repo-research-analyst` | リポジトリ構造と規約をリサーチ |
 
-### デザイン (3)
+### デザイン (2)
 
 | エージェント | 説明 |
 |-------|-------------|
-| `design-implementation-reviewer` | UI実装がFigmaデザインと一致するか確認 |
 | `design-iterator` | 体系的なデザインイテレーションでUIを反復的に改良 |
-| `figma-design-sync` | Web実装をFigmaデザインと同期 |
+| `figma-design-sync` | Web実装をFigmaデザインと視覚的に比較し、差異を検出・修正（レビュー専用モードと修正モードの両方をサポート） |
 
 ### ワークフロー (4)
 

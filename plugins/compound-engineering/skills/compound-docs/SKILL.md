@@ -272,7 +272,7 @@ What's next?
 1. Continue workflow (recommended)
 2. Add to Required Reading - Promote to critical patterns (cora-critical-patterns.md)
 3. Link related issues - Connect to similar problems
-4. Add to existing skill - Add to a learning skill (e.g., hotwire-native)
+4. Add to existing skill - Add to a domain-specific learning skill
 5. Create new skill - Extract into new learning skill
 6. View documentation - See what was captured
 7. Other
@@ -311,14 +311,10 @@ Action:
 User selects this when the documented solution relates to an existing learning skill:
 
 Action:
-1. Prompt: "Which skill? (hotwire-native, etc.)"
+1. Prompt: "Which skill?"
 2. Determine which reference file to update (resources.md, patterns.md, or examples.md)
 3. Add link and brief description to appropriate section
 4. Confirm: "✓ Added to [skill-name] skill in [file]"
-
-Example: For Hotwire Native Tailwind variants solution:
-- Add to `hotwire-native/references/resources.md` under "CORA-Specific Resources"
-- Add to `hotwire-native/references/examples.md` with link to solution doc
 
 **Option 5: Create new skill**
 
@@ -326,7 +322,7 @@ User selects this when the solution represents the start of a new learning domai
 
 Action:
 1. Prompt: "What should the new skill be called? (e.g., stripe-billing, email-processing)"
-2. Run `python3 .claude/skills/skill-creator/scripts/init_skill.py [skill-name]`
+2. Create the skill directory structure
 3. Create initial reference files with this solution as first example
 4. Confirm: "✓ Created new [skill-name] skill with this solution as first example"
 
@@ -490,7 +486,7 @@ What's next?
 1. Continue workflow (recommended)
 2. Add to Required Reading - Promote to critical patterns (cora-critical-patterns.md)
 3. Link related issues - Connect to similar problems
-4. Add to existing skill - Add to a learning skill (e.g., hotwire-native)
+4. Add to existing skill - Add to a domain-specific learning skill
 5. Create new skill - Extract into new learning skill
 6. View documentation - See what was captured
 7. Other

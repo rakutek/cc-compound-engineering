@@ -5,6 +5,38 @@ compound-engineeringプラグインのすべての重要な変更は、このフ
 この形式は[Keep a Changelog](https://keepachangelog.com/en/1.0.0/)に基づいており、
 このプロジェクトは[セマンティックバージョニング](https://semver.org/spec/v2.0.0.html)に準拠しています。
 
+## [2.29.3] - 2026-01-21
+
+### 変更
+
+- **エージェント統合** - 冗長なエージェントを統合し、重複機能を排除（21個→19個）
+  - `design-implementation-reviewer`を`figma-design-sync`に統合（レビュー専用モードと修正モードの両方をサポート）
+  - `code-simplicity-reviewer`を`kieran-code-reviewer`に統合（YAGNI原則とシンプルさフォーカスを追加）
+
+### 修正
+
+- **スキル参照** - 存在しないファイルへの参照を削除
+  - `create-agent-skills`ワークフローから`references/use-xml-tags.md`への参照を削除
+  - `compound-docs/SKILL.md`から`hotwire-native`と`skill-creator`への古い参照を汎用化
+
+### 改善
+
+- エージェント数が削減され、保守性が向上
+- 統合エージェントでより一貫した機能を提供
+- ドキュメントの正確性が向上（存在しない参照を削除）
+
+---
+
+## [2.29.2] - 2026-01-20
+
+### 修正
+
+- **README.md** - レビューエージェントカウントを (11) から (10) に修正（実際のファイル数と一致）
+- **design-iterator.md** - `<frontend_aesthetics>` セクションの重複を削除し、`frontend-design` スキルへの参照を追加
+- **file-todos/SKILL.md** - description を日本語に変更（他のスキルとの一貫性のため）
+
+---
+
 ## [2.29.1] - 2026-01-20
 
 ### 修正

@@ -131,7 +131,7 @@ Task general-purpose: "[skill-name]スキルが[skill-path]で利用可能です
 
 **起動例：**
 ```
-Task general-purpose: "~/.claude/plugins/.../dhh-rails-styleにあるdhh-rails-styleスキルを使用。SKILL.mdを読んで適用: [プランのRailsセクション]"
+Task general-purpose: "~/.claude/plugins/.../dhh-ruby-styleにあるdhh-ruby-styleスキルを使用。SKILL.mdを読んで適用: [プランのRailsセクション]"
 
 Task general-purpose: "~/.claude/plugins/.../frontend-designにあるfrontend-designスキルを使用。SKILL.mdを読んで適用: [プランのUIセクション]"
 
