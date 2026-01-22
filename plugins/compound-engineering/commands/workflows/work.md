@@ -179,11 +179,10 @@ argument-hint: "[プランファイル、仕様書、またはTodoファイル�
    bin/dev  # バックグラウンドで実行
    ```
 
-   **ステップ2：Playwright MCPツールでスクリーンショットをキャプチャ**
-   - `browser_navigate`で影響を受けるページに移動
-   - `browser_resize`でビューポートを設定（必要に応じてデスクトップまたはモバイル）
-   - `browser_snapshot`でページ状態を確認
-   - `browser_take_screenshot`で画像をキャプチャ
+   **ステップ2：agent-browserでスクリーンショットをキャプチャ**
+   - `agent-browser open <url>`で影響を受けるページに移動
+   - `agent-browser snapshot -i`でページ状態を確認
+   - `agent-browser screenshot`で画像をキャプチャ
 
    **キャプチャする内容：**
    - **新しい画面**：新しいUIのスクリーンショット

@@ -137,7 +137,7 @@ Task general-purpose: "~/.claude/plugins/.../frontend-designにあるfrontend-de
 
 Task general-purpose: "~/.claude/plugins/.../agent-native-architectureにあるagent-native-architectureスキルを使用。SKILL.mdを読んで適用: [プランのエージェント/ツールセクション]"
 
-Task general-purpose: "~/.claude/skills/security-patternsにあるsecurity-patternsスキルを使用。SKILL.mdを読んで適用: [全プラン]"
+Task general-purpose: ".claude/skills/my-custom-skillにあるカスタムスキルを使用。SKILL.mdを読んで適用: [プランの関連セクション]"
 ```
 
 **スキルサブエージェントの数に制限なし。関連する可能性のあるすべてのスキルに対して1つずつ起動してください。**

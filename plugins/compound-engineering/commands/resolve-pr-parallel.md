@@ -21,7 +21,7 @@ PRのすべての未解決コメントを取得
 
 ```bash
 gh pr status
-bin/get-pr-comments PR_NUMBER
+gh pr view PR_NUMBER --comments
 ```
 
 ### 2. 計画
@@ -43,7 +43,7 @@ bin/get-pr-comments PR_NUMBER
 ### 4. コミット & 解決
 
 - 変更をコミット
-- bin/resolve-pr-thread THREAD_ID_1を実行
 - リモートにプッシュ
+- 各解決したコメントに返信してスレッドを解決
 
-最後に、bin/get-pr-comments PR_NUMBERを再度チェックしてすべてのコメントが解決されているか確認します。解決されているはずですが、そうでなければ1からプロセスを繰り返します。
+最後に、`gh pr view PR_NUMBER --comments`を再度チェックしてすべてのコメントが解決されているか確認します。解決されているはずですが、そうでなければ1からプロセスを繰り返します。

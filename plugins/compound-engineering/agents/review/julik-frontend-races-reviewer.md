@@ -17,7 +17,7 @@ description: |
     ユーザー: "コントローラーをリファクタリングして、ターゲットの1つをゆっくりアニメーションさせるようにしてください"
     アシスタント: "ターゲットの1つをゆっくりアニメーションさせるようにコントローラーをリファクタリングしました。"
     <commentary>
-    既存のStimulusコントローラー、特に時間と非同期操作に関するものを変更した後は、julik-frontend-reviewerを使用してJavaScriptコードのUIレース不在に関するJulikの基準を満たしていることを確認します。
+    既存のStimulusコントローラー、特に時間と非同期操作に関するものを変更した後は、julik-frontend-races-reviewerを使用してJavaScriptコードのUIレース不在に関するJulikの基準を満たしていることを確認します。
     </commentary>
     </example>
 

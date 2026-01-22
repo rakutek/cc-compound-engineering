@@ -5,6 +5,45 @@ compound-engineeringプラグインのすべての重要な変更は、このフ
 この形式は[Keep a Changelog](https://keepachangelog.com/en/1.0.0/)に基づいており、
 このプロジェクトは[セマンティックバージョニング](https://semver.org/spec/v2.0.0.html)に準拠しています。
 
+## [2.29.6] - 2026-01-21
+
+### 修正
+
+- **エージェント** - Playwright MCPへの古い参照をagent-browserスキルに更新
+  - `bug-reproduction-validator.md` - 行22でPlaywright MCPをagent-browserスキルに置き換え
+  - `figma-design-sync.md` - 行23と189でPlaywright MCPをagent-browserスキルに置き換え
+- **コマンド** - 存在しないスキルへの参照を削除
+  - `deepen-plan.md` - 行140でsecurity-patternsスキルの例をカスタムスキルの例に置き換え
+
+---
+
+## [2.29.5] - 2026-01-21
+
+### 修正
+
+- **workflows/work.md** - Playwright MCPツールへの古い参照をagent-browser CLIコマンドに更新
+  - `browser_navigate` → `agent-browser open <url>`
+  - `browser_resize` → 削除（agent-browserで自動設定）
+  - `browser_snapshot` → `agent-browser snapshot -i`
+  - `browser_take_screenshot` → `agent-browser screenshot`
+- **resolve-pr-parallel.md** - 存在しないbin/スクリプトへの参照をgh CLIコマンドに置き換え
+  - `bin/get-pr-comments` → `gh pr view PR_NUMBER --comments`
+  - `bin/resolve-pr-thread` → コメントで直接解決するフローに変更
+
+### 削除
+
+- **release-docs.mdコマンド** - 存在しないdocs/とmcp-servers/ディレクトリを参照していたため削除
+- **CLAUDE.md** - 存在しないdocs/solutions/plugin-versioning-requirements.mdへの参照を削除
+
+### 改善
+
+- すべてのツール参照が現在の実装と一致（Playwright MCP → agent-browser CLI）
+- すべてのスクリプト参照が公式CLIツールを使用（bin/ → gh CLI）
+- ドキュメントから存在しないファイルへの参照を削除
+- コマンドカウントを13から12に更新（plugin.json、marketplace.json、README.md）
+
+---
+
 ## [2.29.4] - 2026-01-21
 
 ### 修正

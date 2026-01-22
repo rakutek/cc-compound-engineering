@@ -11,8 +11,8 @@
   "plugins": [
     {
       "name": "compound-engineering",
-      "description": "AI-powered development tools that get smarter with every use. Make each unit of engineering work easier than the last. Includes 19 specialized agents, 13 commands, and 9 skills.",
-      "version": "2.29.4",
+      "description": "AI-powered development tools that get smarter with every use. Make each unit of engineering work easier than the last. Includes 19 specialized agents, 12 commands, and 9 skills.",
+      "version": "2.29.6",
       "author": {
         "name": "Kieran Klaassen",
         "url": "https://github.com/kieranklaassen",

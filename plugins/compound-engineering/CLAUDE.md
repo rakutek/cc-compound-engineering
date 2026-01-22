@@ -84,6 +84,3 @@ grep -E '^description:' skills/*/SKILL.md | grep -v 'This skill'
 # すべてが三人称を使用していれば何も返さないはず
 ```
 
-## ドキュメント
-
-詳細なバージョニングワークフローについては`docs/solutions/plugin-versioning-requirements.md`を参照。
