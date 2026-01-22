@@ -135,8 +135,8 @@ For EACH major library/tool/pattern found:
 
 Use Context7 MCP when available:
 ```
-mcp__context7__resolve-library-id: {library-name}
-mcp__context7__get-library-docs: {library-id}
+mcp__plugin_compound-engineering_context7__resolve-library-id: {library-name}
+mcp__plugin_compound-engineering_context7__query-docs: {library-id}
 ```
 
 Focus on official docs, not tutorials.

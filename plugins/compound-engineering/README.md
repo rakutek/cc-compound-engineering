@@ -121,7 +121,7 @@
 
 **提供されるツール：**
 - `resolve-library-id` - フレームワーク/パッケージのライブラリIDを検索
-- `get-library-docs` - 特定のライブラリのドキュメントを取得
+- `query-docs` - 特定のライブラリのドキュメントを取得
 
 Rails、React、Next.js、Vue、Django、Laravelなど100以上のフレームワークをサポート。
 

@@ -84,8 +84,8 @@ which {tool-name}
 ### API/サービススキルの場合
 Context7を使用して現在のドキュメントを取得します:
 ```
-mcp__context7__resolve-library-id: {service-name}
-mcp__context7__get-library-docs: {library-id}, topic: {relevant-topic}
+mcp__plugin_compound-engineering_context7__resolve-library-id: {service-name}
+mcp__plugin_compound-engineering_context7__query-docs: {library-id}, topic: {relevant-topic}
 ```
 
 スキルのドキュメントされたパターンを現在のドキュメントと比較します:
@@ -96,8 +96,8 @@ mcp__context7__get-library-docs: {library-id}, topic: {relevant-topic}
 ### フレームワークスキルの場合
 Context7を使用します:
 ```
-mcp__context7__resolve-library-id: {framework-name}
-mcp__context7__get-library-docs: {library-id}, topic: {specific-api}
+mcp__plugin_compound-engineering_context7__resolve-library-id: {framework-name}
+mcp__plugin_compound-engineering_context7__query-docs: {library-id}, topic: {specific-api}
 ```
 
 確認します:
@@ -183,8 +183,8 @@ which {tool} && {tool} --version
 
 **任意のライブラリ用のContext7パターン:**
 ```
-1. resolve-library-id: "{library-name}"
-2. get-library-docs: "{id}", topic: "{specific-feature}"
+1. mcp__plugin_compound-engineering_context7__resolve-library-id: "{library-name}"
+2. mcp__plugin_compound-engineering_context7__query-docs: "{id}", topic: "{specific-feature}"
 ```
 
 **WebSearchパターン:**

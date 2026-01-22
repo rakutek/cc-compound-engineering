@@ -5,6 +5,21 @@ compound-engineeringプラグインのすべての重要な変更は、このフ
 この形式は[Keep a Changelog](https://keepachangelog.com/en/1.0.0/)に基づいており、
 このプロジェクトは[セマンティックバージョニング](https://semver.org/spec/v2.0.0.html)に準拠しています。
 
+## [2.29.7] - 2026-01-22
+
+### 修正
+
+- **スキル** - Context7 MCPツール名を正しい形式に更新
+  - `verify-skill.md` - `mcp__context7__resolve-library-id` → `mcp__plugin_compound-engineering_context7__resolve-library-id`
+  - `verify-skill.md` - `mcp__context7__get-library-docs` → `mcp__plugin_compound-engineering_context7__query-docs`
+  - `create-domain-expertise-skill.md` - Context7ツール名を正しい形式に更新
+- **README.md** - Context7ツール名を更新
+  - `get-library-docs` → `query-docs`
+- **コマンド** - 存在しないレビュアーへの参照を削除
+  - `plan.md` - /plan-reviewの説明から「Simplicity」レビュアーを削除（code-simplicity-reviewerはkieran-code-reviewerに統合済み）
+
+---
+
 ## [2.29.6] - 2026-01-21
 
 ### 修正
